@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category_responsive.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/shadow.css' %}">
+<link rel="stylesheet" href="{% static 'podcast/style.css' %}">
+{% endblock extra_head %}
+
+{% block header %}
+<div class="home">
+    <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8"></div>
+</div>
+{% endblock header %}
+
+{% block contents %}
+<!-- Main Content -->
+<div class="col-lg-9">
+	<div class="main_content">
+
+		<!-- Category -->
+		<div class="category">
+			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+				<div class="section_title">Kategori</div>
+				<div class="section_tags ml-auto">
+					<ul>
+						<li class="active"><a href="category.html">Semua</a></li>
+						<li><a href="category.html">Lifestyle</a></li>
+						<li><a href="category.html">Berita</a></li>
+						<li><a href="category.html">Kesehatan</a></li>
+						<li><a href="category.html">Teknologi</a></li>
+					</ul>
+				</div>
+				<div class="section_panel_more">
+					<ul>
+						<li>more
+							<ul>
+								<li><a href="category.html">new look 2018</a></li>
+								<li><a href="category.html">street fashion</a></li>
+								<li><a href="category.html">business</a></li>
+								<li><a href="category.html">recipes</a></li>
+								<li><a href="category.html">sport</a></li>
+								<li><a href="category.html">celebrities</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="section_content">
+                <div class="container">
+					<div class="row poca-portfolio">
+						<div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<div class="card-title">
+                                        <a href="#"><h2>Episode 201 - You Don’t Know Squat!</h2></a>
+                                    </div>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<div class="card-title">
+                                        <a href="#"><h2>Episode 201 - You Don’t Know Squat!</h2></a>
+                                    </div>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<div class="card-title">
+                                        <a href="#"><h2>Episode 202 - i do no Know Time!</h2></a>
+                                    </div>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<div class="card-title">
+                                        <a href="#"><h2>Episode 203 - Keep Smile For Awesome!</h2></a>
+                                    </div>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<div class="card-title">
+                                        <a href="#"><h2>Episode 204 - Thanks For Wachting</h2></a>
+                                    </div>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="load_more">
+		<div id="load_more" class="load_more_button text-center trans_200">Load More</div>
+	</div>
+</div>
+{% endblock contents %}
+
+{% block sidebar %}
+{% include 'snippets/sidebar.html' %}
+{% endblock sidebar %}
+
+{% block extra_body %}
+<script src="{% static 'blog/js/category.js' %}"></script>
+<script src="{% static 'podcast/js/poca.bundle.js' %}"></script>
+<script src="{% static 'podcast/js/default-assets/active.js' %}"></script>
+{% endblock extra_body %}

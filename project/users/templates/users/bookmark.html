@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category_responsive.css' %}">
+<link rel="stylesheet" href="{% static 'blog/tabs.css' %}">
+<link rel="stylesheet" href="{% static 'blog/shadow.css' %}">
+<link rel="stylesheet" href="{% static 'blog/post-meta.css' %}">
+{% endblock extra_head %}
+
+
+{% block header %}
+<div class="home">
+    <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8" styel="opacity: 0.5">
+    </div>
+</div>
+{% endblock header %}
+
+
+{% block contents %}
+<div class="col-lg-9 mb-5">
+	<div class="main_content">
+        <div class="mt-5">
+        <h1>Lanjutkan Membaca</h1>
+        <hr>
+        </div>
+        <div class="post_body mt-3">
+            <nav>
+                <div class="nav nav-tabs custom-menu-wrap " id="nav-tab" role="tablist" >
+                    <ul class="nav nav-tabs custom-menu-wrap ">
+                        <li><a class="nav-item nav-link active" id="nav-bookmark-tab" data-toggle="tab" href="#nav-bookmark" aria-controls="nav-bookmark" aria-selected="true">Bookmarks</a>
+                        </li>
+                        <li><a class="nav-item nav-link" id="nav-suka-tab" data-toggle="tab" href="#nav-suka" aria-controls="nav-suka" aria-selected="false">Suka</a>
+                        </li>
+                        <li><a class="nav-item nav-link" id="nav-arsip-tab" data-toggle="tab" href="#nav-arsip" aria-controls="nav-arsip" aria-selected="false">Arsip</a>
+                        </li>
+                    </ul>
+                    
+                    
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active animated flipInX " id="nav-bookmark" role="tabpanel" aria-labelledby="nav-bookmark-tab">
+                    <div class="row">
+                        {% if bookmarks.count >= 1 %}
+                        {% for bookmark in bookmarks %}
+                        <div class="col-lg-8">
+                            <div class="card card_largest_with_image grid-item s_dow">
+                                <img class="card-img-top" src="{{bookmark.thumbnail.url}}" alt="" style="height: 200px;">
+                                <div class="card-body">
+                                    <div class="card-title"><a href="{% url 'blog:detail' bookmark.slug %}">{{bookmark.judul}}</a></div>
+                                    <p class="card-text">{{bookmark.atrikel|safe|truncatewords:"20"}}</p>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{bookmark.user.username}}</a>
+                                            <a href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{bookmark.views}}</a>
+                                            <span class="pointer">
+                                                {% if request.user in bookmark.likes.users.all%}
+                                                <!-- already liked-->
+                                                <a href={% url 'blog:like_dislike' post_id=bookmark.pk opinion='like' %}> <i
+                                                data-toggle="tooltip" data-placement="bottom" title="Unlike"
+                                                class="like fa fa-heart pr-2" style="color: red;">
+                                                <span>{{bookmark.likes_hit}}</span>
+                                                </i>
+                                                </a>
+                                                {% else %}
+                                                <!--not liked-->
+                                                <a href={% url 'blog:like_dislike' post_id=bookmark.pk opinion='like' %}><i
+                                                data-toggle="tooltip" data-placement="bottom" title="Like"
+                                                class="default-icon fa fa-heart pr-2">
+                                                <span>{% if bookmark.likes_hit  %}{{bookmark.likes_hit}} {% else %} 0
+                                                {% endif %}</span></i>
+                                                </a>
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> {{bookmark.comments_hit}}</span>
+                                            <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> </a>
+                                            {% if request.user in bookmark.bookmarks.all %}
+                                            <a href="{% url 'blog:bookmarks' bookmark.id %}" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{bookmark.bookmarks_hit}}</a>
+                                            {% else %}
+                                            <a href="{% url 'blog:bookmarks' bookmark.id %}"><i class="fa fa-bookmark" aria-hidden="true"></i> {{bookmark.bookmarks_hit}}</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="mb-5 mt-5">
+                            <h2>Oops! Anda belum memiliki postingan favorit.</h2>
+                        </div>
+                        {% endif %}
+                        <hr>
+                    </div>
+                </div>
+                <div class="tab-pane fade animated flipInX " id="nav-suka" role="tabpanel" aria-labelledby="nav-suka-tab">
+                    <div class="row">
+                        {% if likes.count >= 1 %}
+                        {% for like in likes %}
+                        <div class="col-lg-4 mb-3">
+                            <div class="card card_small_with_image grid-item s_dow s_dow">
+                                <img class="card-img-top" src="{{like.post.thumbnail.url}}" alt="" style="height: 180px;">
+                                <div class="card-body">
+                                    <div class="card-title card-title-small"><a href="{% url 'blog:detail' like.post.slug %}">{{like.post.judul}}</a></div>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{like.post.user.username}}</a>
+                                            <span class="pointer">
+                                                {% if request.user in like.post.likes.users.all%}
+                                                <!-- already liked-->
+                                                <a href={% url 'blog:like_dislike' post_id=like.pk opinion='like' %}> <i
+                                                data-toggle="tooltip" data-placement="bottom" title="Unlike"
+                                                class="like fa fa-heart pr-2" style="color: red;">
+                                                <span>{{like.post.likes_hit}}</span>
+                                                </i>
+                                                </a>
+                                                {% else %}
+                                                <!--not liked-->
+                                                <a href={% url 'blog:like_dislike' post_id=like.pk opinion='like' %}><i
+                                                data-toggle="tooltip" data-placement="bottom" title="Like"
+                                                class="default-icon fa fa-heart pr-2">
+                                                <span>{% if like.post.likes_hit  %}{{like.post.likes_hit}} {% else %} 0
+                                                {% endif %}</span></i>
+                                                </a>
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            {% if request.user in like.post.bookmarks.all %}
+                                            <a href="{% url 'blog:bookmarks' like.id %}" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{like.post.bookmarks_hit}}</a>
+                                            {% else %}
+                                            <a href="{% url 'blog:bookmarks' like.id %}"><i class="fa fa-bookmark" aria-hidden="true"></i> {{like.post.bookmarks_hit}}</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="mb-5 mt-5">
+                            <h2>Oops! Anda belum memiliki postingan favorit.</h2>
+                        </div>
+                        {% endif %}
+                        
+                    </div>
+                    
+                </div>
+                <div class="tab-pane fade animated flipInX" id="nav-arsip" role="tabpanel" aria-labelledby="nav-arsip-tab">
+                    <div class="row">
+                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                            <div class="card-body">
+                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                            <div class="card-body">
+                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                            <div class="card-body">
+                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                            <div class="card-body">
+                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contents %}
+
+
+{% block extra_body %}
+<script src="{% static 'blog/js/category.js' %}"></script>
+{% endblock extra_body %}

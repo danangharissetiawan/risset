@@ -1,0 +1,33 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login | Adminpro - Admin Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    {% include 'users/snippets/styles.html' %}
+</head>
+
+<body class="materialdesign">
+    <div class="wrapper-pro">
+        <!-- login Start-->
+        <div class="login-form-area mg-t-50 mg-b-40">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    {% block contents %}
+                    {% endblock contents %}
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
+        </div>
+        <!-- login End-->
+    </div>
+    {% include 'users/snippets/scripts.html' %}
+</body>
+
+</html>

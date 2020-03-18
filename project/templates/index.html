@@ -1,0 +1,818 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/plugins/jquery.mb.YTPlayer-3.1.12/jquery.mb.YTPlayer.css' %}">
+<link rel="stylesheet" href="{% static 'blog/shadow.css' %}">
+<link rel="stylesheet" href="{% static 'podcast/style.css' %}">
+<link rel="stylesheet" href="{% static 'blog/post-meta.css' %}">
+{% endblock extra_head %}
+
+{% block header %}
+{% include 'snippets/home_slider.html' %}
+{% endblock header %}
+
+{% block contents %}
+<div class="col-lg-9">
+	<div class="main_content">
+
+		<!-- Blog Section - Don't Miss -->
+		<div class="blog_section">
+			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+				<div class="section_title">Bacaan Wajib</div>
+				<div class="section_tags ml-auto">
+					<ul>
+						<li class="active"><a href="category.html">semua</a></li>
+						<li><a href="category.html">Berita</a></li>
+						<li><a href="category.html">Musik</a></li>
+						<li><a href="category.html">Teknologi</a></li>
+						<li><a href="category.html">Opini</a></li>
+					</ul>
+				</div>
+				<div class="section_panel_more">
+					<ul>
+						<li>more
+							<ul>
+								<li><a href="category.html">new look 2018</a></li>
+								<li><a href="category.html">street fashion</a></li>
+								<li><a href="category.html">business</a></li>
+								<li><a href="category.html">recipes</a></li>
+								<li><a href="category.html">sport</a></li>
+								<li><a href="category.html">celebrities</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="section_content">
+				<div class="grid clearfix">
+
+					<!-- Largest Card With Image -->
+					<div class="card card_largest_with_image grid-item s_dow">
+						<img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_largest_with_image grid-item s_dow">
+						<img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Small Card With Background -->
+					<div class="card card_default card_small_with_background grid-item s_dow">
+						<div class="card_background" style="background-image:url({% static 'blog/images/post_4.jpg' %})"></div>
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="non-border d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_default card_small_with_background grid-item s_dow">
+						<div class="card_background" style="background-image:url({% static 'blog/images/post_4.jpg' %})"></div>
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="non-border d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_default card_small_with_background grid-item s_dow">
+						<div class="card_background" style="background-image:url({% static 'blog/images/post_4.jpg' %})"></div>
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="non-border d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Default Card No Image -->
+
+					<div class="card card_default card_default_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_default card_default_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Blog Section - What's Trending -->
+		<div class="blog_section">
+			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+				<div class="section_title">Sedang Trending</div>
+				<div class="section_tags ml-auto">
+					<ul>
+						<li class="active"><a href="category.html">semua</a></li>
+						<li><a href="category.html">Lifestyle</a></li>
+						<li><a href="category.html">Programmer</a></li>
+						<li><a href="category.html">Berita</a></li>
+						<li><a href="category.html">Travel</a></li>
+					</ul>
+				</div>
+				<div class="section_panel_more">
+					<ul>
+						<li>more
+							<ul>
+								<li><a href="category.html">new look 2018</a></li>
+								<li><a href="category.html">street fashion</a></li>
+								<li><a href="category.html">business</a></li>
+								<li><a href="category.html">recipes</a></li>
+								<li><a href="category.html">sport</a></li>
+								<li><a href="category.html">celebrities</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="section_content">
+				<div class="grid clearfix">
+					
+					<!-- Large Card With Background -->
+					<div class="card card_large_with_background grid-item s_dow">
+						<div class="card_background" style="background-image:url({% static 'blog/images/post_8.jpg' %})"></div>
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="non-border d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_large_with_background grid-item s_dow">
+						<div class="card_background" style="background-image:url({% static 'blog/images/post_8.jpg' %})"></div>
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="non-border d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_large_with_background grid-item s_dow">
+						<div class="card_background" style="background-image:url({% static 'blog/images/post_8.jpg' %})"></div>
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="non-border d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_large_with_background grid-item s_dow">
+						<div class="card_background" style="background-image:url({% static 'blog/images/post_8.jpg' %})"></div>
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="non-border d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Default Card No Image -->
+					<div class="card card_default card_default_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card card_default card_default_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card card_default card_default_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card card_default card_default_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card card_default card_default_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- Blog Section - Podcast -->
+		<div class="blog_section">
+			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+				<div class="section_title">Podcast</div>
+			</div>
+			<div class="section_content">
+				<div class="container">
+					<div class="row poca-portfolio">
+
+						<!-- Single gallery Item -->
+						<div class="col-12 col-md-6 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-thumbnail">
+									<img src="{% static 'podcast/img/bg-img/5.jpg' %}" alt="">
+								</div>
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<h2>Episode 201 - You Don’t Know Squat!</h2>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Single gallery Item -->
+						<div class="col-12 col-md-6 single_gallery_item entre tutor wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-thumbnail">
+									<img src="{% static 'podcast/img/bg-img/6.jpg' %}" alt="">
+								</div>
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<h2>Episode 202 - I Want A New Judge!</h2>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Single gallery Item -->
+						<div class="col-12 col-md-6 single_gallery_item tech tutor wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-thumbnail">
+									<img src="{% static 'podcast/img/bg-img/9.jpg' %}" alt="">
+								</div>
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<h2>Episode 205 - See Ya In Three!</h2>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Single gallery Item -->
+						<div class="col-12 col-md-6 single_gallery_item tech wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-thumbnail">
+									<img src="{% static 'podcast/img/bg-img/10.jpg' %}" alt="">
+								</div>
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<h2>Episode 206 - Let’s Get This Party!</h2>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Single gallery Item -->
+						<div class="col-12 col-md-6 single_gallery_item tech tutor wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-thumbnail">
+									<img src="{% static 'podcast/img/bg-img/9.jpg' %}" alt="">
+								</div>
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<h2>Episode 205 - See Ya In Three!</h2>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Single gallery Item -->
+						<div class="col-12 col-md-6 single_gallery_item tech wow fadeInUp" data-wow-delay="0.2s">
+							<!-- Welcome Music Area -->
+							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
+								<div class="poca-music-thumbnail">
+									<img src="{% static 'podcast/img/bg-img/10.jpg' %}" alt="">
+								</div>
+								<div class="poca-music-content text-center">
+									<span class="music-published-date mb-2">December 9, 2018</span>
+									<h2>Episode 206 - Let’s Get This Party!</h2>
+									<div class="music-meta-data">
+										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+									</div>
+									<!-- Music Player -->
+									<div class="poca-music-player">
+										<audio preload="auto" controls>
+										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										</audio>
+									</div>
+									<!-- Likes, Share & Download -->
+									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+										</div>
+										<div>
+											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Blog Section - Videos -->
+		<div class="blog_section"> 
+			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+				<div class="section_title">Video Populer</div>
+			</div>
+			<div class="section_content">
+				<div class="row">
+					<div class="col">
+						<div class="videos">
+							<div class="player_container">
+								<div id="P1" class="player" 
+										data-property="{videoURL:'PxevRYL96DA',containment:'self',startAt:0,mute:false,autoPlay:false,loop:false,opacity:1}">
+								</div>
+							</div>
+							<div class="playlist">
+								<div class="playlist_background"></div>
+
+								<!-- Video -->
+								<div class="video_container video_command active" onclick="jQuery('#P1').YTPChangeVideo({videoURL: 'PxevRYL96DA', mute:false, addRaster:true})">
+									<div class="video d-flex flex-row align-items-center justify-content-start">
+										<div class="video_image"><div><img src="https://yt3.ggpht.com/a/AATXAJwdwfkJsB95gouLBB3V8VSof9PdVXR26hAA7A=s88-c-k-c0xffffffff-no-rj-mo" alt=""></div><img class="play_img" src="{% static 'blog/images/play.png' %}" alt=""></div>
+										<div class="video_content">
+											<div class="video_title">Kelebihan ikspi kera sakti _ jurus tenaga dalam chikung</div>
+											<div class="video_info"><span>1.2M views</span><span>Sep 29</span></div>
+										</div>
+									</div>
+								</div>
+
+								{% comment %} <!-- Video -->
+								<div class="video_container video_command" onclick="jQuery('#P1').YTPChangeVideo({videoURL: '-BmTKA1xCm8', mute:false, addRaster:true})">
+									<div class="video d-flex flex-row align-items-center justify-content-start">
+										<div class="video_image"><div><img src="https://yt3.ggpht.com/a/AATXAJyq6yO6gtmUThCcJP3TDUJXWXKip2WLAYuaUQ=s88-c-k-c0xffffffff-no-rj-mo" alt=""></div><img class="play_img" src="{% static 'blog/images/play.png' %}" alt=""></div>
+										<div class="video_content">
+											<div class="video_title">How Did van Gogh’s Turbulent Mind</div>
+											<div class="video_info"><span>1.2M views</span><span>Sep 29</span></div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Video -->
+								<div class="video_container video_command" onclick="jQuery('#P1').YTPChangeVideo({videoURL: '6X3C6we4-u4&list', mute:false, addRaster:true})">
+									<div class="video d-flex flex-row align-items-center justify-content-start">
+										<div class="video_image"><div><img src="{% static 'blog/images/video_3.jpg' %}" alt=""></div><img class="play_img" src="{% static 'blog/images/play.png' %}" alt=""></div>
+										<div class="video_content">
+											<div class="video_title">How Did van Gogh’s Turbulent Mind</div>
+											<div class="video_info"><span>1.2M views</span><span>Sep 29</span></div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Video -->
+								<div class="video_container video_command" onclick="jQuery('#P1').YTPChangeVideo({videoURL: 'UjYemgbhJF0', mute:false, addRaster:true})">
+									<div class="video d-flex flex-row align-items-center justify-content-start">
+										<div class="video_image"><div><img src="{% static 'blog/images/video_4.jpg' %}" alt=""></div><img class="play_img" src="{% static 'blog/images/play.png' %}" alt=""></div>
+										<div class="video_content">
+											<div class="video_title">How Did van Gogh’s Turbulent Mind</div>
+											<div class="video_info"><span>1.2M views</span><span>Sep 29</span></div>
+										</div>
+									</div>
+								</div> {% endcomment %}
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Blog Section - Latest -->
+		<div class="blog_section">
+			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+				<div class="section_title">Artikel Terbaru</div>
+			</div>
+			<div class="section_content">
+				<div class="grid clearfix">
+					
+					<!-- Largest Card With Image -->
+					<div class="card card_largest_with_image grid-item s_dow">
+						<img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_largest_with_image grid-item s_dow">
+						<img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_largest_with_image grid-item s_dow">
+						<img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card card_largest_with_image grid-item s_dow">
+						<img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+						<div class="card-body">
+							<div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Small Card Without Image -->
+					<div class="card card_default card_small_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card card_default card_small_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card card_default card_small_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card card_default card_small_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card card_default card_small_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					
+				</div>
+				
+			</div>
+		</div>
+
+	</div>
+	<div class="load_more">
+		<div id="load_more" class="load_more_button text-center trans_200">Load More</div>
+	</div>
+</div>
+{% endblock contents %}
+
+{% block sidebar %}
+{% include 'snippets/sidebar.html' %}
+{% endblock sidebar %}
+
+
+{% block extra_body %}
+<script src="{% static 'blog/plugins/jquery.mb.YTPlayer-3.1.12/jquery.mb.YTPlayer.js' %}"></script>
+<script src="{% static 'podcast/js/poca.bundle.js' %}"></script>
+<script src="{% static 'podcast/js/default-assets/active.js' %}"></script>
+{% endblock extra_body %}

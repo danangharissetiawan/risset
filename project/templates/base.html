@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Risset | {{title}} {% for post in posts|slice:"1" %}{{post.kategori}}{% endfor %}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Demo project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% include 'snippets/styles.html' %}
+<link rel="stylesheet" href="{% static 'users/css/modals.css' %}">
+{% comment %} <link rel="stylesheet" href="{% static 'users/css/Lobibox.min.css' %}">
+<link rel="stylesheet" href="{% static 'users/css/notifications.css' %}"> {% endcomment %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+</head>
+<body>
+
+<div class="super_container">
+
+    <!-- Navbar -->
+	{% include 'snippets/navbar.html' %}
+
+    {% block header %}
+	{% endblock header %}
+	
+	<!-- Page Content -->
+
+	<div class="page_content">
+		<div class="container">
+			{% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-mg-b" style="margin-top: 50px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Berhasil!</strong> {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
+			<div class="row row-lg-eq-height">
+
+				<!-- Main Content -->
+
+				{% block contents %}
+                {% endblock contents %}
+
+				<!--Sidebar-->
+				{% block sidebar %}
+				{% endblock sidebar %}
+
+			</div>
+		</div>
+	</div>
+	{% include 'users/logout.html' %}
+
+	<!-- Footer -->
+    {% include 'snippets/footer.html' %}
+
+</div>
+
+{% include 'snippets/scripts.html' %}
+<script src="{% static 'users/js/modal-active.js' %}"></script>
+{% comment %} <script src="{% static 'users/js/Lobibox.js' %}"></script> {% endcomment %}
+
+{% comment %} {% if messages %}
+	{% for message in messages %}
+	<script>
+		(function ($) {
+		"use strict";
+		$('#basicSuccessNoDelay').on('click', function () {
+			Lobibox.notify('success', {
+				msg: '{{message}}'
+			});
+		});
+		})(jQuery); 
+	</script>
+	{% endfor %}
+{% endif %} {% endcomment %}
+
+{% block extra_body %}
+{% endblock extra_body %}
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en-us" dir="ltr">
+
+  <head>
+
+  <meta charset="utf-8">
+
+<!--
+
+   Copyright (c) 2013, Dragan Babic
+
+   Permission is hereby granted, free of charge, to any person
+   obtaining a copy of this software and associated documentation
+   files (the "Software"), to deal in the Software without
+   restriction, including without limitation the rights to use,
+   copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the
+   Software is furnished to do so, subject to the following
+   conditions:
+
+   The above copyright notice and this permission notice shall be
+   included in all copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+   HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+   OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+
+    <title>Uni&ndash;Form</title>
+
+    <link href="../css/uni-form.css" media="screen" rel="stylesheet"/>
+    <link href="./css/demo.css" media="screen" rel="stylesheet"/>
+    <link href="../css/style.uni-form.css" media="screen" rel="stylesheet"/>
+
+    <!--[if lte ie 7]>
+      <style type="text/css" media="screen">
+        /* Move these to your IE6/7 specific stylesheet if possible */
+        .uni-form, .uni-form fieldset, .uni-form .ctrl-holder, .uni-form .form-hint, .uni-form .button-holder, .uni-form .ctrl-holder ul{ zoom:1; }
+      </style>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <h1><a href="http://sprawsm.com/uni-form/" title="visit Uni–Form online"><img src="../img/uni-form-logo.png" alt=""/></a></h1>
+
+    <p class="intro">
+      This is an example form demonstrating all of the units offered by Uni–Form, along with suggested message handling, form actions and style.
+    </p>
+
+    <div class="uni-form-wrap">
+
+      <form action="#" class="uni-form">
+
+        <div class="header">
+          <h2>Default Uni–Form Style</h2>
+          <p>Author: <a href="http://sprawsm.com/">Dragan Babić</a></p>
+        </div>
+
+        <div id="errorMsg">
+          <h3>Ooops! Your error message title</h3>
+            <ol>
+              <li>Error number one</li>
+              <li>Error number two</li>
+            </ol>
+        </div>
+
+        <div id="okMsg">
+          <p>
+            Looks like everything went OK! Yay!
+          </p>
+        </div>
+
+        <fieldset>
+
+          <h2 class="uni-form-title">Form Title</h2>
+
+          <p>The <code>.form-title</code> class is reserved for styling the title of the form. Any of the heading elements are recommended for this instead of the legend element.</p>
+
+          <h3>Default Form Field Layout</h3>
+
+          <p>This is the default way of laying out form fields where the label is above the input field and the form hint.</p>
+
+          <div class="ctrl-holder valid">
+            <label for=""><em>*</em> Default text input</label>
+            <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text" value="Valid value">
+            <p class="form-hint">This is a form hint.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for=""><em>*</em> Small text input</label>
+            <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text small"/>
+            <p class="form-hint">.small on .input-text</p>
+          </div>
+
+          <div class="ctrl-holder error" id="error1">
+            <label for=""><em>*</em> Medium text input</label>
+            <input name="" id="" data-default-value="Placeholder text" value="Invalid value" size="35" maxlength="50" type="text" class="input-text medium error"/>
+            <p class="form-hint">.medium on .input-text</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for=""><em>*</em> Large text input</label>
+            <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text large"/>
+            <p class="form-hint">.large on .input-text, makes the .form-hint full width as well.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for=""><em>*</em> Autosized text input</label>
+            <input name="" id="" data-default-value="Placeholder text" size="15" maxlength="50" type="text" class="input-text auto"/>
+            <p class="form-hint">.auto and size=&quot;15&quot; on .input-text</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for=""><em>*</em> Textarea</label>
+            <textarea class="input-textarea" name="" id="" rows="15" cols="25"></textarea>
+            <p class="form-hint">Standard textarea. Height is set in CSS.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for="">Select</label>
+            <select name="" id="" class="input-select">
+              <option data-default-value="Placeholder text">Option</option>
+            </select>
+            <p class="form-hint">Standard select box.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for="">File upload</label>
+            <input type="file" id="" name="" size="35" class="input-file" />
+            <p class="form-hint">Standard file upload.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Multifield with select boxes
+            </p>
+            <ul class="multi">
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+            </ul>
+            <p class="form-hint">Default layout of grouped fields. These can have as many fields as you want.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Alternate multifield Layout
+            </p>
+            <ul class="multi multi-inline columns-2">
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+            </ul>
+            <p class="form-hint">Alternate 2-column layout of grouped fields.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Alternate multifield Layout
+            </p>
+            <ul class="multi multi-inline columns-3">
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+            </ul>
+            <p class="form-hint">Alternate 3-column layout of grouped fields.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Multifield with text inputs
+            </p>
+            <ul class="multi">
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+            </ul>
+            <p class="form-hint">These can have as many fields as you want.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Alternate multifield layout
+            </p>
+            <ul class="multi multi-inline columns-2">
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+            </ul>
+            <p class="form-hint">Alternate 2-column layout of grouped fields.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Alternate multifield layout
+            </p>
+            <ul class="multi multi-inline columns-3">
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+            </ul>
+            <p class="form-hint">Alternate 3-column layout of grouped fields.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Multifield with radios
+            </p>
+            <ul class="multi">
+              <li>
+                <label for=""><input id="" name="" data-default-value="Placeholder text" type="radio" checked="checked"/> Option</label></li>
+              <li><label for=""><input id="" name="" data-default-value="Placeholder text" type="radio"/> Option</label></li>
+            </ul>
+            <p class="form-hint">Laying out radio buttons. These can have as many fields as you want.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Multifield with checkboxes
+            </p>
+            <ul class="multi">
+              <li><label for=""><input id="" name="" data-default-value="Placeholder text" type="checkbox" checked="checked"/> Option</label></li>
+              <li><label for=""><input id="" name="" data-default-value="Placeholder text" type="checkbox"/> Option</label></li>
+            </ul>
+            <p class="form-hint">Laying out checkboxes. These can have as many fields as you want.</p>
+          </div>
+
+          <div class="ctrl-holder no-label">
+            <ul class="multi">
+              <li><label for=""><input id="" name="" data-default-value="Placeholder text" type="checkbox"/> I have read and agree with the terms and conditions</label></li>
+            </ul>
+            <p class="form-hint">Laying out a single option checkbox without a label.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              Ctrl element
+            </p>
+            <div class="ctrl">
+              Use the .ctrl element for stuff that's not a Uni–Form field, but that needs to line up with the input fields (e.g. captchas, etc.)
+            </div>
+            <p class="form-hint">It can even have a form hint.</p>
+          </div>
+
+        </fieldset>
+
+        <fieldset class="inline-labels">
+
+          <h3>Alternate Form Fields Layout</h3>
+
+          <p>Triggered by class <code>.inline-labels</code>, the alternate form fields layout is used for laying out forms where you want the label to be in line with the form field.</p>
+
+          <div class="ctrl-holder valid">
+            <label for=""><em>*</em> Default text input</label>
+            <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text" value="Valid value">
+            <p class="form-hint">This is a form hint.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for=""><em>*</em> Small text input</label>
+            <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text small"/>
+            <p class="form-hint">.small on .input-text</p>
+          </div>
+
+          <div class="ctrl-holder error" id="error1">
+            <label for=""><em>*</em> Medium text input</label>
+            <input name="" id="" data-default-value="Placeholder text" value="Invalid value" size="35" maxlength="50" type="text" class="input-text medium error"/>
+            <p class="form-hint">.medium on .input-text</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text large"/>
+            <p class="form-hint">Using .large in .inline-labels is suitable for forms without labels. Hint: use the placeholder attribute as the label.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for=""><em>*</em> Autosized text input</label>
+            <input name="" id="" data-default-value="Placeholder text" size="15" maxlength="50" type="text" class="input-text auto"/>
+            <p class="form-hint">.auto and size=&quot;15&quot; on .input-text</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for=""><em>*</em> Textarea</label>
+            <textarea class="input-textarea" name="" id="" rows="15" cols="25"></textarea>
+            <p class="form-hint">Standard textarea. Height is set in CSS.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for="">Select</label>
+            <select name="" id="" class="input-select">
+              <option data-default-value="Placeholder text">Option</option>
+            </select>
+            <p class="form-hint">Standard select box.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <label for="">File upload</label>
+            <input type="file" id="" name="" size="35" class="input-file" />
+            <p class="form-hint">Standard file upload.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Multifield with select boxes
+            </p>
+            <ul class="multi">
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+            </ul>
+            <p class="form-hint">Default layout of grouped fields. These can have as many fields as you want.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Alternate multifield Layout
+            </p>
+            <ul class="multi multi-inline columns-2">
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+            </ul>
+            <p class="form-hint">Alternate 2-column layout of grouped fields.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Alternate multifield Layout
+            </p>
+            <ul class="multi multi-inline columns-3">
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <select class="input-select" id="" name=""><option data-default-value="Placeholder text">Option</option></select>
+              </li>
+            </ul>
+            <p class="form-hint">Alternate 3-column layout of grouped fields.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Multifield with text inputs
+            </p>
+            <ul class="multi">
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+            </ul>
+            <p class="form-hint">These can have as many fields as you want.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Alternate multifield layout
+            </p>
+            <ul class="multi multi-inline columns-2">
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+            </ul>
+            <p class="form-hint">Alternate 2-column layout of grouped fields.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Alternate multifield layout
+            </p>
+            <ul class="multi multi-inline columns-3">
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+              <li>
+                <label for="">Label</label>
+                <input type="text" id="" name="" class="input-text"/>
+              </li>
+            </ul>
+            <p class="form-hint">Alternate 3-column layout of grouped fields.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Multifield with radios
+            </p>
+            <ul class="multi">
+              <li>
+                <label for=""><input id="" name="" data-default-value="Placeholder text" type="radio" checked="checked"/> Option</label></li>
+              <li><label for=""><input id="" name="" data-default-value="Placeholder text" type="radio"/> Option</label></li>
+            </ul>
+            <p class="form-hint">Laying out radio buttons. These can have as many fields as you want.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              <em>*</em> Multifield with checkboxes
+            </p>
+            <ul class="multi">
+              <li><label for=""><input id="" name="" data-default-value="Placeholder text" type="checkbox" checked="checked"/> Option</label></li>
+              <li><label for=""><input id="" name="" data-default-value="Placeholder text" type="checkbox"/> Option</label></li>
+            </ul>
+            <p class="form-hint">Laying out checkboxes. These can have as many fields as you want.</p>
+          </div>
+
+          <div class="ctrl-holder no-label">
+            <ul class="multi">
+              <li><label for=""><input id="" name="" data-default-value="Placeholder text" type="checkbox"/> I have read and agree with the terms and conditions</label></li>
+            </ul>
+            <p class="form-hint">Laying out a single option checkbox without a label.</p>
+          </div>
+
+          <div class="ctrl-holder">
+            <p class="label">
+              Ctrl element
+            </p>
+            <div class="ctrl">
+              Use the .ctrl element for stuff that's not a Uni–Form field, but that needs to line up with the input fields (e.g. captchas, etc.)
+            </div>
+            <p class="form-hint">It can even have a form hint.</p>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+
+          <h3>Columns</h3>
+
+          <p>Base class is <code>.uni-form-row</code> and classes that determine the number of columns are <code>.columns-2</code> and <code>.columns-3</code>. Note the usage of width class <code>.large</code> on the input in order to make it span the full width of the column and force the <code>.form-hint</code> to take full width as well.</p>
+
+          <div class="uni-form-row columns-2">
+
+            <div class="ctrl-holder">
+              <label for=""><em>*</em> Large text input</label>
+              <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text large">
+              <p class="form-hint">This is a form hint.</p>
+            </div>
+
+            <div class="ctrl-holder">
+              <label for=""><em>*</em> Large text input</label>
+              <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text large">
+              <p class="form-hint">This is a form hint.</p>
+            </div>
+
+          </div> <!-- .uni-form-row -->
+
+          <div class="uni-form-row columns-3">
+
+            <div class="ctrl-holder">
+              <label for=""><em>*</em> Large text input</label>
+              <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text large">
+              <p class="form-hint">This is a form hint.</p>
+            </div>
+
+            <div class="ctrl-holder">
+              <label for=""><em>*</em> Large text input</label>
+              <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text large">
+              <p class="form-hint">This is a form hint.</p>
+            </div>
+
+            <div class="ctrl-holder">
+              <label for=""><em>*</em> Large text input</label>
+              <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text large">
+              <p class="form-hint">This is a form hint.</p>
+            </div>
+
+          </div> <!-- .uni-form-row -->
+
+        </fieldset>
+
+        <fieldset>
+
+          <h3>Disabled Fields</h3>
+
+          <div class="ctrl-holder">
+            <label for=""><em>*</em> Disabled input</label>
+            <input name="" id="" data-default-value="Placeholder text" size="35" maxlength="50" type="text" class="input-text input-disabled" disabled>
+            <p class="form-hint">This is a form hint.</p>
+          </div>
+
+          <div class="button-holder">
+            <button type="submit" class="action-primary action-disabled" disabled>Disabled Primary Action</button>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+
+          <h3>Actions</h3>
+
+          <div class="button-holder">
+            <button type="submit" class="action-secondary">Secondary action</button>
+            <button type="submit" class="action-primary">Primary Action</button>
+          </div>
+
+        </fieldset>
+
+      </form>
+
+    </div>
+
+    <div id="footer">
+      <p>Uni-Form is created by <a href="http://sprawsm.com/">Dragan Babić</a> and is licensed under the MIT license.</p>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/uni-form.jquery.min.js"></script>
+    <script type="text/javascript" src="../js/uni-form-validation.jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+
+        // init Uni-Form
+        $('form.uni-form').uniform();
+
+      });
+    </script>
+
+  </body>
+
+</html>

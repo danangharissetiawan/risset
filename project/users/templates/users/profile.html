@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category_responsive.css' %}">
+<link rel="stylesheet" href="{% static 'blog/tabs.css' %}">
+<link rel="stylesheet" href="{% static 'blog/shadow.css' %}">
+<link rel="stylesheet" href="{% static 'blog/post-meta.css' %}">
+{% endblock extra_head %}
+
+
+{% block header %}
+<div class="home">
+    <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8" styel="opacity: 0.5">
+    </div>
+</div>
+{% endblock header %}
+
+
+{% block contents %}
+<div class="col-lg-9 mb-5">
+	<div class="main_content">
+        <div class="profile user-profile-wrap shadow-reset mt-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="user-profile-img">
+                                <img src="{{user.profile.foto.url}}"  style="width: 90px; height: 90px; border-radius: 50%" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="user-profile-content">
+                                <h2>@{{user.username}}</h2>
+                                <p ><i class="fa fa-user" aria-hidden="true"> </i> <strong>{{user.first_name}} {{user.last_name}}</strong></p>
+                                <p class="profile-founder" style="margin-top: -15px;"><i class="fa fa-map-marker" aria-hidden="true"> </i>  {{user.profile.alamat}}</p>
+                                <p style="margin-top: -15px;"><i class="fa fa-envelope" aria-hidden="true"> </i> {{user.email}}
+                                </p>
+                                <p class="profile-des">{{user.profile.status}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="user-profile-social-list">
+                        <table class="table small m-b-xs">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>542</strong> Projects
+                                    </td>
+                                    <td>
+                                        <strong>{{user.profile.follower}}</strong> Followers
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>612</strong> Comments
+                                    </td>
+                                    <td>
+                                        <strong>542</strong> Articles
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="analytics-sparkle-line user-profile-sparkline">
+                        <div class="analytics-content">
+                            <h5>Visits in last 24h</h5>
+                            <h2 class="counter">498009</h2>
+                            <div class="modal-area-button">
+                            <a class="Primary mg-b-10" href="#" data-toggle="modal" data-target="#PrimaryModalalert">Update</a>
+                            </div>
+                            <div id="sparkline22">
+                             <canvas width="726" height="60" style="display: inline-block; width: 726px; height: 60px; vertical-align: top;"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post_body mt-3">
+            <nav>
+                <div class="nav nav-tabs custom-menu-wrap " id="nav-tab" role="tablist" >
+                    <ul class="nav nav-tabs custom-menu-wrap ">
+                        <li><a class="nav-item nav-link active" id="nav-bookmark-tab" data-toggle="tab" href="#nav-bookmark" aria-controls="nav-bookmark" aria-selected="true">Bookmarks</a>
+                        </li>
+                        <li><a class="nav-item nav-link" id="nav-suka-tab" data-toggle="tab" href="#nav-suka" aria-controls="nav-suka" aria-selected="false">Suka</a>
+                        </li>
+                        <li><a class="nav-item nav-link" id="nav-arsip-tab" data-toggle="tab" href="#nav-arsip" aria-controls="nav-arsip" aria-selected="false">Arsip</a>
+                        </li>
+                    </ul>
+                    
+                    
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active animated flipInX " id="nav-bookmark" role="tabpanel" aria-labelledby="nav-bookmark-tab">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card card_largest_with_image grid-item s_dow">
+                                <img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+                                <div class="card-body">
+                                    <div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                            <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="col-lg-8">
+                            <div class="card card_largest_with_image grid-item s_dow">
+                                <img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+                                <div class="card-body">
+                                    <div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                            <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="col-lg-8">
+                            <div class="card card_largest_with_image grid-item s_dow">
+                                <img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+                                <div class="card-body">
+                                    <div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                            <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade animated flipInX " id="nav-suka" role="tabpanel" aria-labelledby="nav-suka-tab">
+                    <div class="row">
+                        <div class="col-lg-4 mb-3">
+                            <div class="card card_small_with_image grid-item s_dow s_dow">
+                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
+                                <div class="card-body">
+                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <div class="card card_small_with_image grid-item s_dow s_dow">
+                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
+                                <div class="card-body">
+                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <div class="card card_small_with_image grid-item s_dow">
+                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
+                                <div class="card-body">
+                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-lg-4 mb-3">
+                            <div class="card card_small_with_image grid-item s_dow">
+                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
+                                <div class="card-body">
+                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-lg-4 mb-3">
+                            <div class="card card_small_with_image grid-item s_dow">
+                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
+                                <div class="card-body">
+                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <div class="tab-pane fade animated flipInX" id="nav-arsip" role="tabpanel" aria-labelledby="nav-arsip-tab">
+                    <div class="row">
+                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                            <div class="card-body">
+                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                            <div class="card-body">
+                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                            <div class="card-body">
+                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                            <div class="card-body">
+                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                        <div>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                        </div>
+                                        <div>
+                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'users/update.html' %}
+{% endblock contents %}
+
+
+{% block extra_body %}
+<script src="{% static 'blog/js/category.js' %}"></script>
+{% endblock extra_body %}

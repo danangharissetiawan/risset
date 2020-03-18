@@ -1,0 +1,99 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block contents %}
+<form id="adminpro-form" class="adminpro-form" method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="col-lg-6">
+        <div class="login-bg">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="login-title">
+                        <h1 class="text-center">Selamat Datang!</h1>
+                    </div>
+                </div>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-mg-b">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Berhasil!</strong> {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% if form.errors %}
+            <div class="alert alert-danger alert-mg-b">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Password dan username tidak cocok.</strong> Coba login kembali.
+            </div>
+            {% endif %}
+            {% if next %}
+                {% if user.is_authenticated %}
+                <div class="alert alert-danger alert-mg-b">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Gagal!</strong> Akun anda tidak memiliki akses ke halaman ini. To proceed,
+                please login with an account that has access.
+                </div>
+                {% else %}
+                <div class="alert alert-danger alert-mg-b">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Gagal!</strong> Tolong login dengan pada halaman ini.
+                </div>
+                {% endif %}
+            {% endif %}
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="login-input-head">
+                        <p>{{ form.username.label_tag }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="login-input-area">
+                        {{ form.username }}
+                        <i class="fa fa-envelope login-user" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="login-input-head">
+                        <p>{{ form.password.label_tag }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="login-input-area">
+                        {{ form.password }}
+                        <i class="fa fa-lock login-user"></i>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="forgot-password">
+                                <a href="{% url 'password_reset' %}">Lupa password?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+
+                </div>
+                <div class="col-lg-8">
+                    <div class="login-button-pro">
+                        <a href="{% url 'users:register' %}" class="login-button login-button-rg">Register</a>
+                        <button type="submit" class="login-button login-button-lg">Log in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock contents %}

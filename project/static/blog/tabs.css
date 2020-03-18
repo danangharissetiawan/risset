@@ -1,0 +1,84 @@
+/*----------------------------------------*/
+/*  1.  tab CSS
+/*----------------------------------------*/
+
+
+.single-skill, .contact-client-single, .user-profile-wrap, .user-profile-about, .user-profile-post, .user-profile-mutual-friends, .project-details-wrap, .project-details-descri, .project-details-files {
+    padding: 20px;
+    background-color: #fff;
+}
+.shadow-reset {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.user-profile-img {
+	border-radius: 50px;
+	border: black solid 1px 0.5;
+}
+
+
+
+
+.custon-tab-style1{
+	background:#fff;
+	padding:20px;
+}
+.custon-tab-style1 p{
+	font-size:14px;
+	color:#303030;
+	line-height:24px;
+}
+.custon-tab-menu-style1 .tab-custon-ic{
+	margin-right:10px;
+}
+.tab-menu-right li{
+	float:right
+}
+.custom-menu-wrap.custon-tab-menu-style1 li a{
+	margin-right:0px;
+	font-size: 20px;
+}
+.nav-tabs.custom-menu-wrap.custon-tab-menu-style1 li a, .nav-tabs.custom-menu-wrap.custon-tab-menu-style1 li.active a{
+	font-size:16px;
+}
+.tab-content-details{
+	text-align:center;
+	background:#fff;
+	padding:20px 100px;
+	margin-bottom:30px;
+}
+.tab-content-details h2{
+	font-size:20px;
+	color:#303030;
+}
+.tab-content-details p{
+	font-size:14px;
+	color:#303030;
+	line-height:24px;
+}
+.nav-tabs.custom-menu-wrap li a:hover{
+	background:#303030;
+	color:#fff;
+}
+.nav-tabs.custom-menu-wrap li a{
+	color:#fff;
+}
+.nav-tabs.custom-menu-wrap li a{
+	color:#303030;
+}
+.nav-tabs.custom-menu-wrap li a:hover{
+	color:#fff;
+}
+.nav-tabs.custom-menu-wrap li a, .nav-tabs.custom-menu-wrap li a{
+	border:1px solid transparent;
+	padding:15px 25px;
+	font-size:15px;
+}
+.tab-custon-menu-bg-style ul.main-menu-dropdown li a:hover{
+	color:#fff;
+}

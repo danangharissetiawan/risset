@@ -1,0 +1,97 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block contents %}
+<form id="adminpro-register-form" class="adminpro-form" method="POST">
+    {% csrf_token %}
+    <div class="col-lg-6">
+        <div class="login-bg">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="login-title">
+                        <h1 class="text-center">Daftar Sekarang!</h1>
+                    </div>
+                </div>
+            </div>
+            {% if form.errors %}
+                    <div class="alert alert-danger alert-mg-b">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Coba Lagi!</strong> pengisian formulir tidak sesuai prosedur.
+                    </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="login-input-head">
+                        <p>{{form.username.label_tag}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="login-input-area">
+                        {{form.username}}
+                        <i class="fa fa-user login-user"></i>
+                         <small id="hint_id_username" class="form-text text-muted">Wajib. 150 karakter atau kurang. Hanya huruf, angka dan @/./+/-/_.</small> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="login-input-head">
+                        <p>{{form.email.label_tag}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="login-input-area">
+                        {{form.email}}
+                        <i class="fa fa-envelope login-user" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="login-input-head">
+                        <p>{{form.password1.label_tag}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="login-input-area">
+                        {{form.password1}}
+                        <i class="fa fa-lock login-user"></i>
+                        <small id="hint_id_password1" class="form-text text-muted">
+                            <ul>
+                                <li>Kata sandi tidak boleh terlalu mirip dengan informasi pribadi anda yang lain.</li>
+                                <li>Kata sandi harus mengandung setidaknya 8 karakter.</li><li>Kata sandi tidak dapat menjadi kata sandi yang umum digunakan.<li>
+                                <li>Kata sandi tidak bisa terdiri dari angka semua.</li>
+                            </ul>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="login-input-head">
+                        <p>{{form.password2.label_tag}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="login-input-area">
+                        {{form.password2}}
+                        <i class="fa fa-lock login-user"></i>
+                        <small id="hint_id_password2" class="form-text text-muted">Masukan kata sandi sama seperti sebelumnya, untuk verifikasi.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+                    <div class="login-button-pro">
+                        <a href="{% url 'login' %}" class="login-button login-button-rg">Log In</a>
+                        <button type="submit" class="login-button login-button-lg">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock contents %}

@@ -1,0 +1,23 @@
+{% load crispy_forms_tags %}
+<div id="PrimaryModalalert" class="modal modal-adminpro-general default-popup-PrimaryModal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-close-area modal-close-df">
+                <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    {% comment %} <i class="fa fa-check modal-check-pro"></i> {% endcomment %}
+                    {% csrf_token %}
+                    <h2>Update Profile</h2>
+                    {{u_form|crispy}}
+                    {{p_form|crispy}}
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default">Kembali</button>
+                    <button  type="submit" id="basicSuccessNoDelay" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

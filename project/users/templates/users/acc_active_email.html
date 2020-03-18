@@ -1,0 +1,6 @@
+{% autoescape off %}
+=======> Konfirmasi email <=======
+Hi {{ user.username }},
+Silahkan periksa tautan untuk mengkonfirmasi pendaftaran,
+http://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}
+{% endautoescape %}

@@ -1,0 +1,156 @@
+.single-blog-post .blog-content .post-meta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; 
+}
+.single-blog-post .blog-content .post-meta a {
+  color: #6a6a6a;
+  margin-right: 15px;
+  font-size: 11px;
+  line-height: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  -ms-grid-row-align: flex-end;
+  align-items: flex-end;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .single-blog-post .blog-content .post-meta a {
+    font-size: 9px; 
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .single-blog-post .blog-content .post-meta a {
+    font-size: 8px;
+    margin-right: 5px; 
+  } 
+}
+.single-blog-post .blog-content .post-meta a img {
+margin-right: 10px; 
+}
+
+.single-blog-post .blog-content .post-meta a:last-child {
+margin-right: 0; 
+}
+
+.single-blog-post .blog-content .post-meta a:hover, .single-blog-post .blog-content .post-meta a:focus {
+color: #ff1662; 
+}
+
+.single-blog-post.white .blog-content .post-title,
+.single-blog-post.white .blog-content .post-tag,
+.single-blog-post.white .blog-content .post-meta a {
+color: #ffffff; 
+}
+
+.single-blog-post.white .blog-content .post-title:hover, .single-blog-post.white .blog-content .post-title:focus,
+.single-blog-post.white .blog-content .post-tag:hover,
+.single-blog-post.white .blog-content .post-tag:focus,
+.single-blog-post.white .blog-content .post-meta a:hover,
+.single-blog-post.white .blog-content .post-meta a:focus {
+color: #ff1662; 
+}
+
+.single-blog-post.style2 .blog-content .post-title {
+font-size: 24px; 
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .single-blog-post.style2 .blog-content .post-title {
+  font-size: 20px; 
+  } 
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .single-blog-post.style2 .blog-content .post-title {
+  font-size: 20px;
+  } 
+}
+
+@media only screen and (max-width: 767px) {
+.single-blog-post.style2 .blog-content .post-title {
+font-size: 18px; } }
+.single-blog-post.style2 .blog-content .post-meta a {
+font-size: 11px; }
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+.single-blog-post.style2 .blog-content .post-meta a {
+font-size: 8px; } }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.single-blog-post.style2 .blog-content .post-meta a {
+font-size: 9px; } }
+@media only screen and (max-width: 767px) {
+.single-blog-post.style2 .blog-content .post-meta a {
+font-size: 9px; } }
+.single-blog-post.style3 .blog-content .post-title {
+font-size: 20px; }
+.single-blog-post.style3 .blog-content .post-meta a {
+font-size: 11px; }
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+.single-blog-post.style3 .blog-content .post-meta a {
+font-size: 10px; } }
+.single-blog-post.style4 .blog-thumb {
+-webkit-box-flex: 0;
+-ms-flex: 0 0 50%;
+flex: 0 0 50%;
+max-width: 50%;
+width: 50%;
+padding-right: 15px; }
+.single-blog-post.style4 .blog-content {
+-webkit-box-flex: 0;
+-ms-flex: 0 0 50%;
+flex: 0 0 50%;
+max-width: 50%;
+width: 50%; }
+.single-blog-post.style4 .blog-content .post-tag {
+font-size: 10px; }
+.single-blog-post.style4 .blog-content .post-title {
+font-size: 16px; }
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+.single-blog-post.style4 .blog-content .post-title {
+font-size: 14px; } }
+@media only screen and (max-width: 767px) {
+.single-blog-post.style4 .blog-content .post-title {
+font-size: 14px; } }
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+.single-blog-post.style4 .blog-content .post-title {
+font-size: 16px; } }
+.single-blog-post.style4 .blog-content .post-meta a {
+font-size: 11px; }
+
+
+.likes-share-download {
+position: relative;
+z-index: 1;
+padding-top: 15px;
+border-top: 1px solid #ebebeb; 
+}
+
+.likes-share-download a {
+color: #a6a6a6;
+font-size: 14px; }
+@media only screen and (max-width: 767px) {
+.likes-share-download a {
+  font-size: 12px; } }
+.likes-share-download a:focus, .likes-share-download a:hover {
+color: #f55656; }
+
+.non-border {
+  position: relative;
+  z-index: 1;
+  padding-top: 15px;
+  
+  }
+
+.non-border a {
+  color: #a6a6a6;
+  font-size: 14px; }
+
+@media only screen and (max-width: 767px) {
+.non-border a {
+  font-size: 12px; } }
+.non-border a:focus, .non-border a:hover {
+  color: #f55656; }

@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category_responsive.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/shadow.css' %}">
+<link rel="stylesheet" href="{% static 'video/style.css' %}">
+<link rel="stylesheet" href="{% static 'blog/post-meta.css' %}">
+{% endblock extra_head %}
+
+{% block header %}
+<div class="home">
+    <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8"></div>
+</div>
+{% endblock header %}
+
+{% block contents %}
+<div class="col-lg-9">
+	<div class="main_content">
+        <div class="row">
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="https://i.ytimg.com/vi/VGmHzSEf2Sk/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBEvsLVAVUH0P51vC3ciD98adtfFw" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=cb3-Cm3Al3c" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">Vacation Blog: Ibiza</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="https://i.ytimg.com/vi/TvOFqREy7A8/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLA7vkv4U-mE3WMYNgchB95ud2bOtg" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=BmTKA1xCm8&t=14s" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">Top Video Games</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="https://i.ytimg.com/vi/VGmHzSEf2Sk/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBEvsLVAVUH0P51vC3ciD98adtfFw" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">July Fails</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="https://i.ytimg.com/vi/hxSddfuYQ1k/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCEzp_piMg6K65qJUko3-8iClJErw" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=hxSddfuYQ1k" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">July Fails</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="{% static 'video/img/bg-img/29.jpg' %}" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">Top Video Games</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="{% static 'video/img/bg-img/30.jpg' %}" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">July Fails</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="{% static 'video/img/bg-img/31.jpg' %}" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">July Fails</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="{% static 'video/img/bg-img/32.jpg' %}" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">Vacation Blog: Ibiza</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="{% static 'video/img/bg-img/33.jpg' %}" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">Top Video Games</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="{% static 'video/img/bg-img/34.jpg' %}" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">Vacation Blog: Ibiza</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="{% static 'video/img/bg-img/35.jpg' %}" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">July Fails</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Blog Post -->
+            <div class="col-lg-6">
+                <div class="single-blog-post style2 mb-50 s_dow p-3">
+                    <div class="blog-thumb mb-30">
+                        <img src="{% static 'video/img/bg-img/36.jpg' %}" alt="">
+                        <!-- Play Button -->
+                        <a href="https://www.youtube.com/watch?v=0aNNYEUARAk" class="video-play-btn style2"><i class="fa fa-play"></i></a>
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Featured</a>
+                        <a href="#" class="post-title">July Fails</a>
+                        <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                        <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
+                                <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                            </div>
+                            <div>
+                                <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
+                                <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
+                                <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="load_more">
+		<div id="load_more" class="load_more_button text-center trans_200">Load More</div>
+	</div>
+</div>
+{% endblock contents %}
+
+{% block sidebar %}
+{% include 'snippets/sidebar.html' %}
+{% endblock sidebar %}
+
+{% block extra_body %}
+<script src="{% static 'blog/js/category.js' %}"></script>
+<script src="{% static 'video/js/plugins/plugins.js' %}"></script>
+<script src="{% static 'video/js/active.js' %}"></script>
+{% endblock extra_body %}

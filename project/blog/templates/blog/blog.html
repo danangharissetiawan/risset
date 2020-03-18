@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category_responsive.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/shadow.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/post-meta.css' %}">
+{% endblock extra_head %}
+
+{% block header %}
+	<div class="home">
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8"></div>
+		<div class="home_content">
+			{% for post in posts|slice:"1" %}
+			<div class="post_category trans_200"><a href="category.html" class="trans_200">{{post.kategori}}</a></div>
+			{% endfor %}
+		</div>
+	</div>
+	</div>
+{% endblock header %}
+
+{% block contents %}
+<!-- Main Content -->
+<div class="col-lg-9">
+	<div class="main_content">
+
+		<!-- Category -->
+		<div class="category">
+			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+				<div class="section_title">Kategori</div>
+				<div class="section_tags ml-auto">
+					<ul>
+						{% for k1 in kategori_list %}
+						<li class=""><a href="{% url 'blog:home' k1 %}">{{k1}}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="section_panel_more">
+					<ul>
+						<li>more
+							<ul>
+								{% for k2 in kategori_list %}
+								<li><a href="{% url 'blog:home' k2 %}">{{k2}}</a></li>
+								{% endfor %}
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="section_content">
+				<div class="grid clearfix">
+
+					<!-- Largest Card With Image -->
+					{% for post in posts %}
+					<div class="card card_largest_with_image grid-item s_dow">
+						<img class="card-img-top" src="{{post.thumbnail.url}}" alt="" style="height: 250px;">
+						<div class="card-body">
+							<div class="card-title"><a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a></div>
+							<p class="card-text">{{post.atrikel|safe|truncatewords:"20"}}</p>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
+									<a href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{post.views}}</a>
+									<span class="pointer">
+										{% if request.user in post.likes.users.all%}
+										<!-- already liked-->
+										<a href={% url 'blog:like_dislike' post_id=post.pk opinion='like' %}> <i
+										data-toggle="tooltip" data-placement="bottom" title="Unlike"
+										class="like fa fa-heart pr-2" style="color: red;">
+										<span>{{post.likes_hit}}</span>
+										</i>
+										</a>
+										{% else %}
+										<!--not liked-->
+										<a href={% url 'blog:like_dislike' post_id=post.pk opinion='like' %}><i
+										data-toggle="tooltip" data-placement="bottom" title="Like"
+										class="default-icon fa fa-heart pr-2">
+										<span>{% if post.likes  %}{{post.likes_hit}} {% else %} 0
+										{% endif %}</span></i>
+										</a>
+										{% endif %}
+									</span>
+								</div>
+								<div>
+									<span href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> {{post.comments_hit}}</span>
+									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> </a>
+									{% if request.user in post.bookmarks.all %}
+									<a href="{% url 'blog:bookmarks' post.id %}" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{post.bookmarks_hit}}</a>
+									{% else %}
+									<a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true"></i> {{post.bookmarks_hit}}</a>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					
+
+					
+					<!-- Small Card Without Image -->
+					{% for post in posts|slice:"1:" %}
+					<div class="card card_default card_small_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
+									<span class="pointer">
+										{% if request.user in post.likes.users.all%}
+										<!-- already liked-->
+										<a href={% url 'blog:like_dislike' post_id=post.pk opinion='like' %}> <i
+										data-toggle="tooltip" data-placement="bottom" title="Unlike"
+										class="like fa fa-heart pr-2" style="color: red;">
+										<span>{{post.likes_hit}}</span>
+										</i>
+										</a>
+										{% else %}
+										<!--not liked-->
+										<a href={% url 'blog:like_dislike' post_id=post.pk opinion='like' %}><i
+										data-toggle="tooltip" data-placement="bottom" title="Like"
+										class="default-icon fa fa-heart pr-2">
+										<span>{% if post.likes  %}{{post.likes_hit}} {% else %} 0
+										{% endif %}</span></i>
+										</a>
+										{% endif %}
+									</span>
+								</div>
+								<div>
+									{% if request.user in post.bookmarks.all %}
+									<a href="{% url 'blog:bookmarks' post.id %}" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{post.bookmarks_hit}}</a>
+									{% else %}
+									<a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true"></i> {{post.bookmarks_hit}}</a>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+
+					<div class="card card_default card_small_no_image grid-item s_dow">
+						<div class="card-body">
+							<div class="card-title card-title-small"><a href="post.html">Risset Meroket, Sampai Ke Belahan Dunia</a></div>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Danang Haris</a>
+									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 130</a>
+								</div>
+								<div>
+									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 50</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="load_more">
+		<div id="load_more" class="load_more_button text-center trans_200">Load More</div>
+	</div>
+</div>
+{% endblock contents %}
+
+{% block sidebar %}
+{% include 'snippets/sidebar.html' %}
+{% endblock sidebar %}
+
+{% block extra_body %}
+<script src="{% static 'blog/js/category.js' %}"></script>
+{% endblock extra_body %}
