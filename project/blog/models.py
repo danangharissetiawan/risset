@@ -8,12 +8,18 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
+class Kategori(models.Model):
+    kategori = models.CharField(max_length=125)
+
+    def __str__(self):
+        return self.kategori
+
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     judul = models.CharField(max_length=125)
     thumbnail = models.ImageField(upload_to='blog/post')
-    kategori = models.CharField(max_length=50)
+    kategori = models.ForeignKey(Kategori, on_delete=models.CASCADE, blank=True, null=True, related_name='kategoris')
     tags = TaggableManager()
     atrikel = RichTextUploadingField()
     views = models.PositiveIntegerField(default=0)

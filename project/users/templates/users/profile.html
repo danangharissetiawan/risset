@@ -27,17 +27,17 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="user-profile-img">
-                                <img src="{{user.profile.foto.url}}"  style="width: 90px; height: 90px; border-radius: 50%" alt="">
+                                <img src="{{users.profile.foto.url}}"  style="width: 90px; height: 90px; border-radius: 50%" alt="">
                             </div>
                         </div>
                         <div class="col-lg-9">
                             <div class="user-profile-content">
-                                <h2>@{{user.username}}</h2>
-                                <p ><i class="fa fa-user" aria-hidden="true"> </i> <strong>{{user.first_name}} {{user.last_name}}</strong></p>
-                                <p class="profile-founder" style="margin-top: -15px;"><i class="fa fa-map-marker" aria-hidden="true"> </i>  {{user.profile.alamat}}</p>
-                                <p style="margin-top: -15px;"><i class="fa fa-envelope" aria-hidden="true"> </i> {{user.email}}
+                                <h2>@{% if user.username %} {{users.username}} {% else %} - {% endif %}</h2>
+                                <p ><i class="fa fa-user" aria-hidden="true"> </i> <strong>{% if users.first_name %} {{users.first_name}} {{users.last_name}} {% else %} - {% endif %}</strong></p>
+                                <p class="profile-founder" style="margin-top: -15px;"><i class="fa fa-map-marker" aria-hidden="true"> </i> {% if users.profile.alamat %} {{users.profile.alamat}} {% else %}  - {% endif %} </p>
+                                <p style="margin-top: -15px;"><i class="fa fa-envelope" aria-hidden="true"> </i> {% if user.email %} {{users.email}} {% else %} - {% endif %}
                                 </p>
-                                <p class="profile-des">{{user.profile.status}}</p>
+                                <p class="profile-des">{{users.profile.status}}</p>
                             </div>
                         </div>
                     </div>
@@ -48,10 +48,10 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <strong>542</strong> Projects
+                                        <strong>{{sum_views}}</strong> Views
                                     </td>
                                     <td>
-                                        <strong>{{user.profile.follower}}</strong> Followers
+                                        <strong>{{users.profile.follower}}</strong> Followers
                                     </td>
 
                                 </tr>
@@ -72,9 +72,13 @@
                         <div class="analytics-content">
                             <h5>Visits in last 24h</h5>
                             <h2 class="counter">498009</h2>
-                            <div class="modal-area-button">
-                            <a class="Primary mg-b-10" href="#" data-toggle="modal" data-target="#PrimaryModalalert">Update</a>
-                            </div>
+                            {% if users.username is not request.user.username %}
+    
+                            {% else %}
+                                <div class="modal-area-button">
+                                <a class="Primary mg-b-10" href="#" data-toggle="modal" data-target="#PrimaryModalalert">Update</a>
+                                </div>
+                            {% endif %}
                             <div id="sparkline22">
                              <canvas width="726" height="60" style="display: inline-block; width: 726px; height: 60px; vertical-align: top;"></canvas></div>
                         </div>
@@ -86,7 +90,7 @@
             <nav>
                 <div class="nav nav-tabs custom-menu-wrap " id="nav-tab" role="tablist" >
                     <ul class="nav nav-tabs custom-menu-wrap ">
-                        <li><a class="nav-item nav-link active" id="nav-bookmark-tab" data-toggle="tab" href="#nav-bookmark" aria-controls="nav-bookmark" aria-selected="true">Bookmarks</a>
+                        <li><a class="nav-item nav-link active" id="nav-postAll-tab" data-toggle="tab" href="#nav-postAll" aria-controls="nav-postAll" aria-selected="true">Post All</a>
                         </li>
                         <li><a class="nav-item nav-link" id="nav-suka-tab" data-toggle="tab" href="#nav-suka" aria-controls="nav-suka" aria-selected="false">Suka</a>
                         </li>
@@ -98,70 +102,54 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active animated flipInX " id="nav-bookmark" role="tabpanel" aria-labelledby="nav-bookmark-tab">
+                <div class="tab-pane fade show active animated flipInX " id="nav-postAll" role="tabpanel" aria-labelledby="nav-postAll-tab">
                     <div class="row">
+                        {% for post in users.posts.all %}
                         <div class="col-lg-8">
                             <div class="card card_largest_with_image grid-item s_dow">
-                                <img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
+                                <img class="card-img-top" src="{{post.thumbnail.url}}" alt="" style="height: 180px;">
                                 <div class="card-body">
-                                    <div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                    <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
+                                    <div class="card-title"><a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a></div>
+                                    <p class="card-text">{{post.atrikel|safe|truncatewords:"20"}}</p>
                                     <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
                                         <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                            <a href="{% url 'blog:penulis' post.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
+                                            <a href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{post.views}}</a>
+                                            <span class="pointer">
+                                                {% if request.user in post.likes.users.all%}
+                                                <!-- already liked-->
+                                                <a href={% url 'blog:like_dislike' post_id=post.pk opinion='like' %}> <i
+                                                data-toggle="tooltip" data-placement="bottom" title="Unlike"
+                                                class="like fa fa-heart pr-2" style="color: red;">
+                                                <span>{{post.likes_hit}}</span>
+                                                </i>
+                                                </a>
+                                                {% else %}
+                                                <!--not liked-->
+                                                <a href={% url 'blog:like_dislike' post_id=post.pk opinion='like' %}><i
+                                                data-toggle="tooltip" data-placement="bottom" title="Like"
+                                                class="default-icon fa fa-heart pr-2">
+                                                <span>{% if post.likes  %}{{post.likes_hit}} {% else %} 0
+                                                {% endif %}</span></i>
+                                                </a>
+                                                {% endif %}
+                                            </span>
                                         </div>
                                         <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
-                                            <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                            <span href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> {{post.comments_hit}}</span>
+                                            <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> </a>
+                                            {% if request.user in post.bookmarks.all %}
+                                            <a href="{% url 'blog:bookmarks' post.id %}" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{post.bookmarks_hit}}</a>
+                                            {% else %}
+                                            <a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true"></i> {{post.bookmarks_hit}}</a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                         <hr>
-                        <div class="col-lg-8">
-                            <div class="card card_largest_with_image grid-item s_dow">
-                                <img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
-                                <div class="card-body">
-                                    <div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                    <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
-                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
-                                            <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="col-lg-8">
-                            <div class="card card_largest_with_image grid-item s_dow">
-                                <img class="card-img-top" src="{% static 'blog/images/post_1.jpg' %}" alt="">
-                                <div class="card-body">
-                                    <div class="card-title"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                    <p class="card-text">Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
-                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
-                                            <a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="tab-pane fade animated flipInX " id="nav-suka" role="tabpanel" aria-labelledby="nav-suka-tab">

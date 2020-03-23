@@ -7,7 +7,7 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    foto = models.ImageField(upload_to='user/profile', default='default.jpg', height_field=None, width_field=None, max_length=None, blank=True, null=True)
+    foto = models.ImageField(upload_to='user/profile', default='default.jpg', blank=True, null=True)
     alamat = models.CharField(max_length=250, blank=True, null=True)
     status = models.TextField(blank=True, null=True)
     follower = models.IntegerField(blank=True, null=True)

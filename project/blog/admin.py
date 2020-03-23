@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 
 
-from .models import Post, Comment, Like, DisLike
+from .models import Post, Comment, Like, DisLike, Kategori
 
 
 # Register your models here.
@@ -58,8 +58,8 @@ class PostAdmin(admin.ModelAdmin):
         queryset.update(publish=True)
 
 admin.site.register(Post, PostAdmin)
-admin.site.unregister(Group)
-
+# admin.site.unregister(Group)
+admin.site.register(Kategori)
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'post', 'body', 'created', 'activate',)

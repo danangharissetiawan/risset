@@ -60,7 +60,7 @@
 							<p class="card-text">{{post.atrikel|safe|truncatewords:"20"}}</p>
 							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
 								<div>
-									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
+									<a href="{% url 'blog:penulis' post.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
 									<a href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{post.views}}</a>
 									<span class="pointer">
 										{% if request.user in post.likes.users.all%}

@@ -28,11 +28,15 @@
 			<!-- Top Panel -->
 			<div class="post_panel post_panel_top d-flex flex-row align-items-center justify-content-start">
 				<div class="author_image"><div><img src="{{post.user.profile.foto.url}}" alt=""></div></div>
-				<div class="post_meta"><a href="#">{{post.user.username}}</a> | {{post.created}}</div>
+				<div class="post_meta"><a href="{% url 'blog:penulis' post.user.username %}">{{post.user.username}}</a> | {{post.created}}</div>
 				<div class="post_share ml-sm-auto">
 					<ul class="post_share_list">
-						<li class="post_share_item"><a href="#"><i class="fa fa-bookmark" aria-hidden="true" style="font-size: 25px;"></i></a></li>
-						<li class="post_share_item"><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 25px;"></i></a></li>
+						{% if is_bookmarks %}
+							<a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true" style="color: red; font-size: 25px;"></i></a>
+							{% else %}
+							<a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true" style="color: black; font-size: 25px;"></i></a>
+						{% endif %}
+						</li>
 					</ul>
 				</div>
 			</div>

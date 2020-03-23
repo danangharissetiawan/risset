@@ -3,11 +3,12 @@ from django.db.models import Count, Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import Post, Comment, Like, DisLike
+from .models import Post, Comment, Like, DisLike, Kategori
 from .forms import CommentForm
 
 
@@ -20,15 +21,15 @@ class PostListView(ListView):
     # paginate_by = 10
 
     def get_queryset(self):
-        self.queryset = self.model.objects.filter(kategori=self.kwargs['kategori']).filter(publish=True)
+        b = Kategori.objects.get(kategori=self.kwargs['kategori'])
+        self.queryset = b.kategoris.all()
         return super().get_queryset()
 
     def get_context_data(self, **kwargs):
-        kategori_list = self.model.objects.values_list('kategori', flat=True).distinct().exclude(kategori=self.kwargs['kategori'])
-        self.kwargs.update({'kategori_list': kategori_list})
+        kategori_list = Kategori.objects.all().exclude(kategori=self.kwargs['kategori'])
+        self.kwargs.update({'kategori_list':kategori_list})
 
         user = self.request.user
-        print(user)
         self.kwargs.update({'users':user})
 
 
@@ -138,3 +139,23 @@ def bookmarks(request, id):
     else:
         post.bookmarks.add(request.user)
     return HttpResponseRedirect(post.get_absolute_url())
+
+
+class Penulis(View):
+    template_name='users/profile.html'
+
+    def get(self, *args, **kwargs):
+        users = User.objects.get(username=self.kwargs['user'])
+        views_post = users.posts.all()
+        d = []
+        for a in views_post:
+            b = a.views
+            d.append(b)
+
+        sum_views = sum(d)
+
+        self.context = {
+            'users':users,
+            'sum_views':sum_views
+        }
+        return render(self.request, self.template_name, self.context)

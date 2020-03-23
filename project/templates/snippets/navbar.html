@@ -9,7 +9,7 @@
                     <nav class="main_nav">
                         <ul>
                             <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{% url 'blog:home' 'jurnal' %}">Blog</a></li>
                             <li><a href="{% url 'podcast:home' %}">Podcast</a></li>
                             <li><a href="{% url 'video:home' %}">Video</a></li>
                             <li><a href="#">About</a></li>
