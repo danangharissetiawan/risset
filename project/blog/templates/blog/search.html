@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/styles/category_responsive.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/shadow.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/post-meta.css' %}">
+{% endblock extra_head %}
+
+{% block header %}
+	<div class="home">
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8"></div>
+		<div class="home_content">
+		{% if kategori_active %}
+			<div class="post_category trans_200"><a href="{% url 'blog:kategori' kategori_active %}" class="trans_200">{{kategori_active}}</a></div>
+		{% else %}
+			<div class="post_category trans_200"><a href="#" class="trans_200">All Post</a></div>
+		{% endif %}
+		</div>
+	</div>
+	</div>
+{% endblock header %}
+
+{% block contents %}
+<!-- Main Content -->
+<div class="col-lg-9">
+	<div class="main_content">
+		<!-- Category -->
+		<div class="category">
+			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+				<div class="section_title">Kategori</div>
+				<div class="section_tags ml-auto">
+					<ul>
+						<li class=""><a href="{% url 'blog:home'%}">Semua</a></li>
+						{% for k1 in kategori_list|slice:5 %}
+						<li class=""><a href="{% url 'blog:kategori' k1 %}">{{k1}}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="section_panel_more">
+					<ul>
+						<li>more
+							<ul>
+								{% for k2 in kategori_list|slice:"5:" %}
+								<li><a href="{% url 'blog:kategori' k2 %}">{{k2}}</a></li>
+								{% endfor %}
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="section_content">
+            {% if submitbutton == request.GET.q != '' %}
+                {% if posts %}
+                <h3>Hasil pencarian dari <b>{{ request.GET.q }}</b></h3>
+                <br/><br/>
+					{% for post in posts|slice:"10" %}
+					<div class="card card_largest_with_image grid-item s_dow">
+						<img class="card-img-top" src="{{post.thumbnail.url}}" alt="" style="height: 250px;">
+						<div class="card-body">
+							<div class="card-title"><a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a></div>
+							<p class="card-text">{{post.atrikel|safe|truncatewords:"20"}}</p>
+							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+								<div>
+									<a href="{% url 'blog:penulis' post.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
+									<a href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{post.views}}</a>
+									<span class="pointer">
+										{% if request.user in post.likes.users.all%}
+										<!-- already liked-->
+										<a href={% url 'blog:like_dislike' post_id=post.pk opinion='like' %}> <i
+										data-toggle="tooltip" data-placement="bottom" title="Unlike"
+										class="like fa fa-heart pr-2" style="color: red;">
+										<span>{{post.likes_hit}}</span>
+										</i>
+										</a>
+										{% else %}
+										<!--not liked-->
+										<a href={% url 'blog:like_dislike' post_id=post.pk opinion='like' %}><i
+										data-toggle="tooltip" data-placement="bottom" title="Like"
+										class="default-icon fa fa-heart pr-2">
+										<span>{% if post.likes  %}{{post.likes_hit}} {% else %} 0
+										{% endif %}</span></i>
+										</a>
+										{% endif %}
+									</span>
+								</div>
+								<div>
+									<span href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> {{post.comments_hit}}</span>
+									{% if request.user in post.bookmarks.all %}
+									<a href="{% url 'blog:bookmarks' post.id %}" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{post.bookmarks_hit}}</a>
+									{% else %}
+									<a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true"></i> {{post.bookmarks_hit}}</a>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+                {% else %}
+                <h3>Hasil dari <b>{{ request.GET.q }}</b> tidak ditemukan! </h3>
+                {% endif %}
+                {% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock contents %}
+
+{% block sidebar %}
+{% include 'snippets/sidebar.html' %}
+{% endblock sidebar %}
+
+{% block extra_body %}
+<script src="{% static 'blog/js/category.js' %}"></script>
+{% endblock extra_body %}

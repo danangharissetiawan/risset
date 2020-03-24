@@ -13,7 +13,7 @@
 <div class="home">
 	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/post.jpg' %}" data-speed="0.8"></div>
 	<div class="home_content">
-		<div class="post_category trans_200"><a href="{% url 'blog:home' post.kategori %}" class="trans_200">{{post.kategori}}</a></div>
+		<div class="post_category trans_200"><a href="{% url 'blog:kategori' post.kategori %}" class="trans_200">{{post.kategori}}</a></div>
 		<div class="post_title">{{post.judul}}</div>
 	</div>
 </div>
@@ -49,13 +49,13 @@
 				<div class="post_tags">
 					<ul>
 						{% for tag in post.tags.all %}
-						<li class="post_tag"><a href="#">{{tag}}</a></li>
+						<li class="post_tag"><a href="{% url 'blog:tag' tag %}">{{tag}}</a></li>
 						{% endfor %}
 					</ul>
 				</div>
 				<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
 					<div>
-						<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
+						<a href="{% url 'blog:penulis' post.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
 						<span href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{post.views}}</span>
 						<span class="pointer">
 							{% if request.user in post.likes.users.all%}

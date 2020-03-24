@@ -12,9 +12,11 @@
 	<div class="home">
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8"></div>
 		<div class="home_content">
-			{% for post in posts|slice:"1" %}
-			<div class="post_category trans_200"><a href="category.html" class="trans_200">{{post.kategori}}</a></div>
-			{% endfor %}
+		{% if kategori_active %}
+			<div class="post_category trans_200"><a href="{% url 'blog:kategori' kategori_active %}" class="trans_200">{{kategori_active}}</a></div>
+		{% else %}
+			<div class="post_category trans_200"><a href="#" class="trans_200">All Post</a></div>
+		{% endif %}
 		</div>
 	</div>
 	</div>
@@ -24,15 +26,15 @@
 <!-- Main Content -->
 <div class="col-lg-9">
 	<div class="main_content">
-
 		<!-- Category -->
 		<div class="category">
 			<div class="section_panel d-flex flex-row align-items-center justify-content-start">
 				<div class="section_title">Kategori</div>
 				<div class="section_tags ml-auto">
 					<ul>
-						{% for k1 in kategori_list %}
-						<li class=""><a href="{% url 'blog:home' k1 %}">{{k1}}</a></li>
+						<li class=""><a href="{% url 'blog:home'%}">Semua</a></li>
+						{% for k1 in kategori_list|slice:5 %}
+						<li class=""><a href="{% url 'blog:kategori' k1 %}">{{k1}}</a></li>
 						{% endfor %}
 					</ul>
 				</div>
@@ -40,8 +42,8 @@
 					<ul>
 						<li>more
 							<ul>
-								{% for k2 in kategori_list %}
-								<li><a href="{% url 'blog:home' k2 %}">{{k2}}</a></li>
+								{% for k2 in kategori_list|slice:"5:" %}
+								<li><a href="{% url 'blog:kategori' k2 %}">{{k2}}</a></li>
 								{% endfor %}
 							</ul>
 						</li>
@@ -52,7 +54,7 @@
 				<div class="grid clearfix">
 
 					<!-- Largest Card With Image -->
-					{% for post in posts %}
+					{% for post in posts|slice:"10" %}
 					<div class="card card_largest_with_image grid-item s_dow">
 						<img class="card-img-top" src="{{post.thumbnail.url}}" alt="" style="height: 250px;">
 						<div class="card-body">
@@ -95,10 +97,9 @@
 					</div>
 					{% endfor %}
 					
-
-					
 					<!-- Small Card Without Image -->
-					{% for post in posts|slice:"1:" %}
+					
+					{% for post in posts|slice:"10:" %}
 					<div class="card card_default card_small_no_image grid-item s_dow">
 						<div class="card-body">
 							<div class="card-title card-title-small"><a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a></div>
@@ -155,7 +156,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 	<div class="load_more">
 		<div id="load_more" class="load_more_button text-center trans_200">Load More</div>

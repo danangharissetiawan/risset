@@ -7,10 +7,32 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from taggit.models import Tag
 
 from .models import Post, Comment, Like, DisLike, Kategori
 from .forms import CommentForm
 
+
+class AllPost(ListView):
+    model = Post
+    template_name = 'blog/blog.html'
+    context_object_name = 'posts'
+    ordering = '-created'
+    # paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        kategori_list = Kategori.objects.all()
+        self.kwargs.update({'kategori_list':kategori_list})
+
+        user = self.request.user
+        self.kwargs.update({'users':user})
+
+
+        kwargs = self.kwargs
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Blog"
+        context["active"] = "active"
+        return context
 
 
 class PostListView(ListView):
@@ -29,15 +51,73 @@ class PostListView(ListView):
         kategori_list = Kategori.objects.all().exclude(kategori=self.kwargs['kategori'])
         self.kwargs.update({'kategori_list':kategori_list})
 
+        kategori_active = Kategori.objects.get(kategori=self.kwargs['kategori'])
+        self.kwargs.update({'kategori_active':kategori_active})
+        print(kategori_active)
+
         user = self.request.user
         self.kwargs.update({'users':user})
 
 
         kwargs = self.kwargs
         context = super().get_context_data(**kwargs)
-        context["title"] = "Blog - "
+        context["title"] = kategori_active
         context["active"] = "active"
         return context
+
+
+class Tags(ListView):
+    # model = Post
+    template_name = "blog/blog.html"
+    context_object_name = 'posts'
+    # ordering = '-created'
+    # paginate_by = 10
+
+    def get_queryset(self):
+        self.queryset = Post.objects.filter(tags__name__contains=self.kwargs['tag'])
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        kategori_list = Kategori.objects.all()
+        self.kwargs.update({'kategori_list':kategori_list})
+
+        user = self.request.user
+        self.kwargs.update({'users':user})
+
+        kategori_active = Tag.objects.get(name=self.kwargs['tag'])
+        self.kwargs.update({'kategori_active':kategori_active})
+
+        kwargs = self.kwargs
+        context = super().get_context_data(**kwargs)
+        context["title"] = kategori_active
+        context["active"] = "active"
+        return context
+
+
+def search(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')
+        submitbutton = request.GET.get('submit')
+        if query is not None:
+            lookups = Q(judul__icontains=query) | Q(
+                tags__name__icontains=query) | Q(kategori__kategori__icontains=query) | Q(slug__icontains=query) | Q(user__username__icontains=query)
+
+            posts = Post.objects.filter(lookups).distinct()
+            kategori_list = Kategori.objects.all()
+
+            context = {
+                'posts': posts,
+                'submitbutton': submitbutton,
+                'kategori_list':kategori_list,
+                'title':'Search',
+                'kategori_active': 'Search'
+            }
+            return render(request, 'blog/search.html', context)
+        else:
+            return render(request, 'blog/search.html')
+    else:
+        return render(request, 'blog/search.html')
+    
 
 
 class PostDetailView(View):
@@ -66,7 +146,7 @@ class PostDetailView(View):
             'is_bookmarks': self.is_bookmarks,
             'comments':comments,
             'jumlah_comment': j_comments,
-            'title':'Post',
+            'title':post,
         }
         return render(self.request, self.template_name, self.context)
 
@@ -165,6 +245,8 @@ class Penulis(View):
 
         self.context = {
             'users':users,
-            'sum_views':sum_views
+            'sum_views':sum_views,
+            'title':'Penulis'
         }
         return render(self.request, self.template_name, self.context)
+
