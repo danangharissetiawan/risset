@@ -112,9 +112,10 @@
 				<div class="post_share ml-sm-auto">
 					<span>share</span>
 					<ul class="post_share_list">
-						<li class="post_share_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-						<li class="post_share_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-						<li class="post_share_item"><a href="#"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+						<li class="post_share_item"><a href="http://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{ request.get_full_path|urlencode }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="post_share_item"><a href="https://twitter.com/share?url=http://127.0.0.1:8000{{ request.get_full_path|urlencode }}&text={{post.judul}}&hashtags=[hashtags]"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="post_share_item"><a href="https://plus.google.com/share?url=http://127.0.0.1:8000{{ request.get_full_path|urlencode }}"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+						<li class="post_share_item"><a href="https://wa.me/?text={{post.judul}} http://127.0.0.1:8000{{ request.get_full_path|urlencode }}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
 					</ul>
 				</div>
 			</div>

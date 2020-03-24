@@ -45,6 +45,7 @@ class PostDetailView(View):
     template_name = "blog/detail.html"
     comment_form = CommentForm()
     is_bookmarks = False
+    is_archives = False
 
 
     def get(self, *args, **kwargs):
@@ -128,8 +129,8 @@ class LikeDislike(LoginRequiredMixin, View):
                 post.dis_likes.users.add(request.user)
                 post.likes.users.remove(request.user)
         else:
-            return redirect('blog:detail', post.slug)
-        return redirect('blog:detail', post.slug)
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def bookmarks(request, id):
@@ -138,7 +139,15 @@ def bookmarks(request, id):
         post.bookmarks.remove(request.user)
     else:
         post.bookmarks.add(request.user)
-    return HttpResponseRedirect(post.get_absolute_url())
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def archives(request, id):
+    post = get_object_or_404(Post, id=id)
+    if post.archive.filter(id=request.user.id).exists():
+        post.archive.remove(request.user)
+    else:
+        post.archive.add(request.user)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class Penulis(View):

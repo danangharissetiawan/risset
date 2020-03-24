@@ -24,6 +24,7 @@ class Post(models.Model):
     atrikel = RichTextUploadingField()
     views = models.PositiveIntegerField(default=0)
     bookmarks = models.ManyToManyField(User, related_name='bookmarks', blank=True)
+    archive = models.ManyToManyField(User, related_name="archives", blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     publish = models.BooleanField(default=False, editable=False)

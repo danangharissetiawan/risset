@@ -1,7 +1,7 @@
 from django.urls import path
 from django.views.generic import TemplateView
 
-from .views import PostListView, PostDetailView, LikeDislike, Comment, bookmarks, Penulis
+from .views import PostListView, PostDetailView, LikeDislike, Comment, bookmarks, Penulis, archives
 
 app_name = "blog"
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('comment/<str:slug>', Comment.as_view(), name='comment'),
     path('video-detail/', TemplateView.as_view(template_name='blog/single-video.html'), name='video-detail'),
     path('bookmarks/<int:id>', bookmarks, name='bookmarks'),
+    path('archives/<int:id>', archives, name='archives'),
     path('penulis/<str:user>', Penulis.as_view(), name='penulis'),
     path('profile/', TemplateView.as_view(template_name='blog/profile.html'), name='profile'),
     path('<kategori>/', PostListView.as_view(), name='home'),

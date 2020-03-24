@@ -97,12 +97,14 @@ class Bookmarks(LoginRequiredMixin, View):
         users = request.user
         likes = users.requirement_post_likes.all()
         bookmarks = users.bookmarks.all()
-        print(bookmarks)
+        archives = users.archives.all()
+        print(archives)
         
         self.context = {
             'likes':likes,
             'users':users,
             'bookmarks':bookmarks,
+            'archives': archives
         }
         return render(self.request, self.template_name, self.context)
 
