@@ -8,6 +8,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 from django.core.mail import EmailMessage
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -15,9 +16,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 
 from .tokens import account_activation_token
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, PostForm
 
-from .models import Profile
+
+from .models import Profile, UserFollowing
 from blog.models import Post
 # Create your views here.
 
@@ -109,3 +111,60 @@ class Bookmarks(LoginRequiredMixin, View):
         return render(self.request, self.template_name, self.context)
 
 
+class Follow(LoginRequiredMixin, View):
+    login_url = "/login/"
+    redirect_field_name ="next"
+
+    def get(self, request, *args, **kwargs):
+        user = User.objects.get(id=self.kwargs['user_id'])
+        follow = request.user
+        a = UserFollowing.objects.values_list('user_id', flat=True).distinct()
+        for b in a:
+            print(b)
+            print(follow.id, " = ", follow)
+        # UserFollowing.objects.create(user_id=user,following_user_id=follow)
+
+        # try:
+        #     user.following
+        # except User.following.RelatedObjectDoesNotExist as identifier:
+        #     UserFollowing.objects.create(user_id=user)
+        if user.id != follow.id:
+            print(user, follow.id)
+            if follow.id in a:
+                UserFollowing.objects.filter(user_id=user,following_user_id=follow).delete()
+            else:
+                UserFollowing.objects.create(user_id=user,following_user_id=follow)
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.error(self.request, "maaf, anda tidak bisa mengikuti dri anda sendiri")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))    
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+        
+
+@login_required
+def tambah_artikel(request):
+    # posts = Post.objects.filter(active=True).order_by('-created')
+    # common_tags = Post.tags.most_common()[:4]
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            newpost = form.save(commit=False)
+            newpost.slug = slugify(newpost.judul)
+            newpost.user = request.user
+            newpost.save()
+
+            # form.save_m2m()
+            messages.success(
+                request, 'Anda berhasil menambahkan artikel'
+            )
+            return redirect('users:profile')
+    else:
+        form = PostForm()
+    
+    context = {
+        # 'posts': posts,
+        # 'common_tags': common_tags,
+        'form': form,
+    }
+    return render(request, 'users/tambah_artikel.html', context)

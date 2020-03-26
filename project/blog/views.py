@@ -6,12 +6,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from taggit.models import Tag
 
 from .models import Post, Comment, Like, DisLike, Kategori
 from .forms import CommentForm
-
 
 class AllPost(ListView):
     model = Post
@@ -213,6 +213,7 @@ class LikeDislike(LoginRequiredMixin, View):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required
 def bookmarks(request, id):
     post = get_object_or_404(Post, id=id)
     if post.bookmarks.filter(id=request.user.id).exists():
@@ -221,6 +222,8 @@ def bookmarks(request, id):
         post.bookmarks.add(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
+@login_required
 def archives(request, id):
     post = get_object_or_404(Post, id=id)
     if post.archive.filter(id=request.user.id).exists():
@@ -249,4 +252,3 @@ class Penulis(View):
             'title':'Penulis'
         }
         return render(self.request, self.template_name, self.context)
-

@@ -95,7 +95,6 @@
 					</div>
 					<div>
 						<span href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> {{post.comments_hit}}</span>
-						<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
 						{% if is_bookmarks %}
 						<a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{post.bookmarks_hit}}</a>
 						{% else %}

@@ -130,20 +130,38 @@ CKEDITOR_UPLOAD_PATH = 'blog/post/artikel/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
-        'heigth': 500,
-        'width': 990,
+        'heigth': 900,
+        'width': '100%',
+         'toolbar_Custom': [
+            {'name': 'document', 'items': ['Source', '-',]},
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',]},
+            {'name': 'links', 'items': ['Link', 'Unlink']},
+            {'name': 'insert',
+             'items': ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak']},
+            {'name': 'tools', 'items': ['Maximize',]},
+        ],
+
+        # 'toolbar': 'Special',
+        # 'tollbar_Special': [
+        #     ['CodeSnippet'],
+        # ],
+        'extraPlugins': ['codesnippet'],
+    },
+    'special':{
+        'toolbar': 'Custom',
+        'heigth':500,
+        'width':500,
         'toolbar_Custom': [
-            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
+            ['Styles', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
             ['Link', 'Unlink', 'Anchor'],
             ['Image', 'Flash', 'Table', 'HorizontalRule'],
-            ['TextColor', 'BgColor'],
+            ['TextColor', ],
             ['Smiley', 'SpecialChar'], ['Source'],
-        ],
-        'toolbar': 'Special',
-        'tollbar_Special': [
-            ['CodeSnippet'],
-        ],
-        'extraPlugins': ['codesnippet'],
+        ]
     }
 }
 

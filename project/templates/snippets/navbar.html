@@ -81,7 +81,7 @@
         <ul class="menu_mm">
             <li class="menu_mm"><a href="index.html">home</a></li>
             <hr>
-            {% if is_authrnticated %}
+            {% if user.is_authenticated %}
             <li class="nav-item menu_mm"><a href="{% url 'users:profile' %}">My Profile</a>
             </li>
             <li class="nav-item menu_mm"><a href="{% url 'users:bookmark' %}">Bookmark</a>

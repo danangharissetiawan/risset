@@ -10,9 +10,6 @@ class Profile(models.Model):
     foto = models.ImageField(upload_to='user/profile', default='default.jpg', blank=True, null=True)
     alamat = models.CharField(max_length=250, blank=True, null=True)
     status = models.TextField(blank=True, null=True)
-    follower = models.IntegerField(blank=True, null=True)
-
-
 
     def __str__(self):
         return self.user.username
@@ -27,5 +24,15 @@ class Profile(models.Model):
             img.save(self.foto.path)
 
 
-    # def get_absolute_url(self):
-    #     return reverse("_detail", kwargs={"pk": self.pk})
+class UserFollowing(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="following", blank=True)
+    following_user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="followers", blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user_id", "following_user_id")
+        ordering = ["-created"]
+
+    def __str__(self):
+        return "{} follow {}".format(self.following_user_id,self.user_id)
+

@@ -54,7 +54,7 @@
 				<div class="grid clearfix">
 
 					<!-- Largest Card With Image -->
-					{% for post in posts|slice:"10" %}
+					{% for post in posts|slice:"7" %}
 					<div class="card card_largest_with_image grid-item s_dow">
 						<img class="card-img-top" src="{{post.thumbnail.url}}" alt="" style="height: 250px;">
 						<div class="card-body">
@@ -99,7 +99,7 @@
 					
 					<!-- Small Card Without Image -->
 					
-					{% for post in posts|slice:"10:" %}
+					{% for post in posts|slice:"7:" %}
 					<div class="card card_default card_small_no_image grid-item s_dow">
 						<div class="card-body">
 							<div class="card-title card-title-small"><a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a></div>
