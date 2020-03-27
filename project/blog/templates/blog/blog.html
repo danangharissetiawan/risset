@@ -10,15 +10,17 @@
 
 {% block header %}
 	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8"></div>
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/sunset.jpg' %}" data-speed="0.2"></div>
 		<div class="home_content">
+		{% for post in posts|slice:"1" %}
+		<h2><b><a href="{% url 'blog:detail' post.slug %}" style="color: white;">{{post.judul}}</a></b></h2>
+		{% endfor %}
 		{% if kategori_active %}
 			<div class="post_category trans_200"><a href="{% url 'blog:kategori' kategori_active %}" class="trans_200">{{kategori_active}}</a></div>
 		{% else %}
 			<div class="post_category trans_200"><a href="#" class="trans_200">All Post</a></div>
 		{% endif %}
 		</div>
-	</div>
 	</div>
 {% endblock header %}
 
@@ -33,7 +35,7 @@
 				<div class="section_tags ml-auto">
 					<ul>
 						<li class=""><a href="{% url 'blog:home'%}">Semua</a></li>
-						{% for k1 in kategori_list|slice:5 %}
+						{% for k1 in kategori_list|slice:"4" %}
 						<li class=""><a href="{% url 'blog:kategori' k1 %}">{{k1}}</a></li>
 						{% endfor %}
 					</ul>
@@ -42,7 +44,7 @@
 					<ul>
 						<li>more
 							<ul>
-								{% for k2 in kategori_list|slice:"5:" %}
+								{% for k2 in kategori_list|slice:"4:" %}
 								<li><a href="{% url 'blog:kategori' k2 %}">{{k2}}</a></li>
 								{% endfor %}
 							</ul>
@@ -54,7 +56,7 @@
 				<div class="grid clearfix">
 
 					<!-- Largest Card With Image -->
-					{% for post in posts|slice:"7" %}
+					{% for post in posts|slice:"1:7" %}
 					<div class="card card_largest_with_image grid-item s_dow">
 						<img class="card-img-top" src="{{post.thumbnail.url}}" alt="" style="height: 250px;">
 						<div class="card-body">
@@ -63,7 +65,7 @@
 							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
 								<div>
 									<a href="{% url 'blog:penulis' post.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
-									<a href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{post.views}}</a>
+									<span href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{post.views}}</span>
 									<span class="pointer">
 										{% if request.user in post.likes.users.all%}
 										<!-- already liked-->
@@ -105,7 +107,7 @@
 							<div class="card-title card-title-small"><a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a></div>
 							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
 								<div>
-									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
+									<a href="{% url 'blog:penulis' post.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.user.username}}</a>
 									<span class="pointer">
 										{% if request.user in post.likes.users.all%}
 										<!-- already liked-->

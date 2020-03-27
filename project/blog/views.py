@@ -238,6 +238,9 @@ class Penulis(View):
 
     def get(self, *args, **kwargs):
         users = User.objects.get(username=self.kwargs['user'])
+        posts = users.posts.filter(publish=True)
+        likes = users.requirement_post_likes.all()
+        archives = users.archives.all()
         views_post = users.posts.all()
         d = []
         for a in views_post:
@@ -249,6 +252,9 @@ class Penulis(View):
         self.context = {
             'users':users,
             'sum_views':sum_views,
-            'title':'Penulis'
+            'title':'Penulis',
+            'posts': posts,
+            'likes': likes,
+            'archives': archives,
         }
         return render(self.request, self.template_name, self.context)

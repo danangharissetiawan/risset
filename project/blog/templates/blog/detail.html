@@ -11,7 +11,7 @@
 
 {% block header %}
 <div class="home">
-	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/post.jpg' %}" data-speed="0.8"></div>
+	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/post.jpg' %}" data-speed="0.2"></div>
 	<div class="home_content">
 		<div class="post_category trans_200"><a href="{% url 'blog:kategori' post.kategori %}" class="trans_200">{{post.kategori}}</a></div>
 		<div class="post_title">{{post.judul}}</div>
@@ -34,7 +34,7 @@
 						{% if is_bookmarks %}
 							<a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true" style="color: red; font-size: 25px;"></i></a>
 							{% else %}
-							<a href="{% url 'blog:bookmarks' post.id %}"><i class="fa fa-bookmark" aria-hidden="true" style="color: black; font-size: 25px;"></i></a>
+							<a href="{% url 'blog:bookmarks' post.id %}" class="books"><i class="fa fa-bookmark" aria-hidden="true" style="font-size: 25px;"></i></a>
 						{% endif %}
 						</li>
 					</ul>
@@ -107,7 +107,7 @@
 			<!-- Bottom Panel -->
 			<div class="post_panel bottom_panel d-flex flex-row align-items-center justify-content-start">
 				<div class="author_image"><div><img src="{{post.user.profile.foto.url}}" alt=""></div></div>
-				<div class="post_meta"><a href="#">{{post.user.username}}</a> | {{post.created}}</div>
+				<div class="post_meta"><a href="{% url 'blog:penulis' post.user.username %}">{{post.user.username}}</a> | {{post.created}}</div>
 				<div class="post_share ml-sm-auto">
 					<span>share</span>
 					<ul class="post_share_list">
@@ -133,7 +133,7 @@
 							</div>
 							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
 								<div>
-									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.get_previous_by_created.user.username}}</a>
+									<a href="{% url 'blog:penulis' post.get_previous_by_created.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.get_previous_by_created.user.username}}</a>
 									<span class="pointer">
 										{% if request.user in post.get_previous_by_created.likes.users.all%}
 										<!-- already liked-->
@@ -178,7 +178,7 @@
 							<div class="card-title card-title-small"><a href="{% url 'blog:detail' post.get_next_by_created.slug %}">{{post.get_next_by_created.judul}}</a></div>
 							<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
 								<div>
-									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.get_next_by_created.user.username}}</a>
+									<a href="{% url 'blog:penulis' post.get_next_by_created.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{post.get_next_by_created.user.username}}</a>
 									<span class="pointer">
 										{% if request.user in post.get_next_by_created.likes.users.all%}
 										<!-- already liked-->

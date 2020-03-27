@@ -32,10 +32,10 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="user-profile-content">
-                                <h2>@{% if user.username %} {{users.username}} {% else %} - {% endif %}</h2> 
+                                <h2>@{% if users.username %} {{users.username}} {% else %} - {% endif %}</h2> 
                                 <p ><i class="fa fa-user" aria-hidden="true"> </i> <strong>{% if users.first_name %} {{users.first_name}} {{users.last_name}} {% else %} - {% endif %}</strong></p>
                                 <p class="profile-founder" style="margin-top: -15px;"><i class="fa fa-map-marker" aria-hidden="true"> </i> {% if users.profile.alamat %} {{users.profile.alamat}} {% else %}  - {% endif %} </p>
-                                <p style="margin-top: -15px;"><i class="fa fa-envelope" aria-hidden="true"> </i> {% if user.email %} {{users.email}} {% else %} - {% endif %}
+                                <p style="margin-top: -15px;"><i class="fa fa-envelope" aria-hidden="true"> </i> {% if users.email %} {{users.email}} {% else %} - {% endif %}
                                 </p>
                                 <p class="profile-des">{{users.profile.status}}</p>
                                 <div id="load_more" class="m-3 load_more_button text-center trans_200"><a href="{% url 'users:follow' users.id %}"> Follow</a></div>
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <div class="post_body mt-3">
+        <div class="post_body mb-5 mt-5">
             <nav>
                 <div class="nav nav-tabs custom-menu-wrap " id="nav-tab" role="tablist" >
                     <ul class="nav nav-tabs custom-menu-wrap ">
@@ -104,14 +104,22 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active animated flipInX " id="nav-postAll" role="tabpanel" aria-labelledby="nav-postAll-tab">
+                <div class="tab-pane fade show active animated " id="nav-postAll" role="tabpanel" aria-labelledby="nav-postAll-tab">
                     <div class="row">
-                        {% for post in users.posts.all %}
+                        {% for post in posts %}
                         <div class="col-lg-8">
                             <div class="card card_largest_with_image grid-item s_dow">
                                 <img class="card-img-top" src="{{post.thumbnail.url}}" alt="" style="height: 180px;">
                                 <div class="card-body">
-                                    <div class="card-title"><a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a></div>
+                                    <div class="card-title">
+                                        <a href="{% url 'blog:detail' post.slug %}">{{post.judul}}</a>
+                                        {% if request.user == post.user %}
+                                            <a href="{% url 'users:update-artikel' post.id %}" class="ml-2"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                            {% comment %} <a href="#" class="ml-2"><i class="fa fa-trash" aria-hidden="true"></i></a> {% endcomment %}
+                                            <a class="ml-2" style="color: black;"  href="#" data-toggle="modal" data-target="#DangerModalalert"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            {% endif %}
+                                            {% include 'users/delete_artikel.html' %}
+                                    </div>
                                     <p class="card-text">{{post.atrikel|safe|truncatewords:"20"}}</p>
                                     <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
                                         <div>
@@ -153,155 +161,114 @@
                         <hr>
                     </div>
                 </div>
-                <div class="tab-pane fade animated flipInX " id="nav-suka" role="tabpanel" aria-labelledby="nav-suka-tab">
+                <div class="tab-pane fade animated " id="nav-suka" role="tabpanel" aria-labelledby="nav-suka-tab">
                     <div class="row">
+                        {% if likes.count >= 1 %}
+                        {% for like in likes %}
                         <div class="col-lg-4 mb-3">
                             <div class="card card_small_with_image grid-item s_dow s_dow">
-                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
+                                <img class="card-img-top" src="{{like.post.thumbnail.url}}" alt="" style="height: 180px;">
                                 <div class="card-body">
-                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
+                                    <div class="card-title card-title-small"><a href="{% url 'blog:detail' like.post.slug %}">{{like.post.judul}}</a></div>
                                     <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
                                         <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{like.post.user.username}}</a>
+                                            <span class="pointer">
+                                                {% if request.user in like.post.likes.users.all%}
+                                                <!-- already liked-->
+                                                <a href={% url 'blog:like_dislike' post_id=like.pk opinion='like' %}> <i
+                                                data-toggle="tooltip" data-placement="bottom" title="Unlike"
+                                                class="like fa fa-heart pr-2" style="color: red;">
+                                                <span>{{like.post.likes_hit}}</span>
+                                                </i>
+                                                </a>
+                                                {% else %}
+                                                <!--not liked-->
+                                                <a href={% url 'blog:like_dislike' post_id=like.pk opinion='like' %}><i
+                                                data-toggle="tooltip" data-placement="bottom" title="Like"
+                                                class="default-icon fa fa-heart pr-2">
+                                                <span>{% if like.post.likes_hit  %}{{like.post.likes_hit}} {% else %} 0
+                                                {% endif %}</span></i>
+                                                </a>
+                                                {% endif %}
+                                            </span>
                                         </div>
                                         <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+                                            {% if request.user in like.post.bookmarks.all %}
+                                            <a href="{% url 'blog:bookmarks' like.id %}" class="mr-3" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{like.post.bookmarks_hit}}</a>
+                                            {% else %}
+                                            <a href="{% url 'blog:bookmarks' like.id %}" class="mr-3"><i class="fa fa-bookmark" aria-hidden="true"></i> {{like.post.bookmarks_hit}}</a>
+                                            {% endif %}
+                                            {% if request.user in like.post.archive.all%}
+                                            <a href="{% url 'blog:archives' like.post.id %}" style="color: red;"><i class="fa fa-archive" aria-hidden="true" style="color: red;"></i></a>
+                                            {% else %}
+                                            <a href="{% url 'blog:archives' like.post.id %}"><i class="fa fa-archive" aria-hidden="true"></i></a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 mb-3">
-                            <div class="card card_small_with_image grid-item s_dow s_dow">
-                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
-                                <div class="card-body">
-                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="mb-5 mt-5">
+                            <h2 class="text-center">Oops! Anda belum memiliki postingan favorit.</h2>
                         </div>
-                        <div class="col-lg-4 mb-3">
-                            <div class="card card_small_with_image grid-item s_dow">
-                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
-                                <div class="card-body">
-                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="col-lg-4 mb-3">
-                            <div class="card card_small_with_image grid-item s_dow">
-                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
-                                <div class="card-body">
-                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="col-lg-4 mb-3">
-                            <div class="card card_small_with_image grid-item s_dow">
-                                <img class="card-img-top" src="{% static 'blog/images/post_5.jpg' %}" alt="">
-                                <div class="card-body">
-                                    <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        {% endif %}
+                        
                     </div>
                     
                 </div>
-                <div class="tab-pane fade animated flipInX" id="nav-arsip" role="tabpanel" aria-labelledby="nav-arsip-tab">
+                <div class="tab-pane fade animated" id="nav-arsip" role="tabpanel" aria-labelledby="nav-arsip-tab">
                     <div class="row">
-                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
-                            <div class="card-body">
-                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+                        {% if archives.count >= 1 %}
+                            {% for archive in archives %}
+                            <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
+                                <div class="card-body">
+                                    <div class="card-title card-title-small"><a href="post.html">{{archive.judul}}</a></div>
+                                    <p class="card-text">{{archive.atrikel|safe|truncatewords:"15"}}</p>
+                                    <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
+                                            <div>
+                                                <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{archive.user.username}}</a>
+                                                <span class="pointer">
+                                                    {% if request.user in archive.likes.users.all%}
+                                                    <!-- already liked-->
+                                                    <a href={% url 'blog:like_dislike' post_id=archive.pk opinion='like' %}> <i
+                                                    data-toggle="tooltip" data-placement="bottom" title="Unlike"
+                                                    class="like fa fa-heart pr-2" style="color: red;">
+                                                    <span>{{archive.likes_hit}}</span>
+                                                    </i>
+                                                    </a>
+                                                    {% else %}
+                                                    <!--not liked-->
+                                                    <a href={% url 'blog:like_dislike' post_id=archive.pk opinion='like' %}><i
+                                                    data-toggle="tooltip" data-placement="bottom" title="Like"
+                                                    class="default-icon fa fa-heart pr-2">
+                                                    <span>{% if archive.likes_hit  %}{{archive.likes_hit}} {% else %} 0
+                                                    {% endif %}</span></i>
+                                                    </a>
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                {% if request.user in archive.bookmarks.all %}
+                                                <a href="{% url 'blog:bookmarks' archive.id %}" class="mr-3" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{archive.bookmarks_hit}}</a>
+                                                {% else %}
+                                                <a href="{% url 'blog:bookmarks' archive.id %}" class="mr-3"><i class="fa fa-bookmark" aria-hidden="true"></i> {{archive.bookmarks_hit}}</a>
+                                                {% endif %}
+                                                {% if request.user in archive.archive.all%}
+                                                <a href="{% url 'blog:archives' archive.id %}" style="color: red;"><i class="fa fa-trash" aria-hidden="true" style="color: red;"></i></a>
+                                                {% endif %}
+                                            </div>
                                         </div>
-                                        <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
+                                </div>
                             </div>
+                            {% endfor %}
+                        {% else %}
+                        <div class="mb-5 mt-5">
+                            <h2 class="text-center">Oops! Anda belum memiliki archives.</h2>
                         </div>
-                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
-                            <div class="card-body">
-                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
-                            <div class="card-body">
-                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 m-2 s_dow card card_default card_small_no_image grid-item">
-                            <div class="card-body">
-                                <div class="card-title card-title-small"><a href="post.html">How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</a></div>
-                                <div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-                                        <div>
-                                            <a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-                                            <a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-                                        </div>
-                                        <div>
-                                            <a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
                     
@@ -310,6 +277,7 @@
     </div>
 </div>
 {% include 'users/update.html' %}
+
 {% endblock contents %}
 
 

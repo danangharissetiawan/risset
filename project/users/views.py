@@ -68,6 +68,10 @@ def activate(request, uidb64, token):
 
 @login_required
 def Profile(request):
+    users = request.user
+    posts = users.posts.filter(publish=True)
+    likes = users.requirement_post_likes.all()
+    archives = users.archives.all()
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -85,7 +89,10 @@ def Profile(request):
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'users': request.user
+        'users': request.user,
+        'posts': posts,
+        'likes': likes,
+        'archives': archives,
     }
     return render(request, 'users/profile.html', context)
 
@@ -163,8 +170,49 @@ def tambah_artikel(request):
         form = PostForm()
     
     context = {
-        # 'posts': posts,
-        # 'common_tags': common_tags,
         'form': form,
     }
     return render(request, 'users/tambah_artikel.html', context)
+
+
+@login_required
+def update_artikel(request, id=None):
+    post = get_object_or_404(Post, id=id)
+    penulis = post.user.username
+    if request.method == 'POST' and request.user.is_authenticated and request.user.username:
+        form = PostForm(request.POST or None, request.FILES or None, instance=post)
+        if form.is_valid():
+            newpost = form.save(commit=False)
+            newpost.slug = slugify(newpost.judul)
+            newpost.save()
+
+            messages.success(
+                request, 'Anda berhasil mengubah artikel'
+            )
+            return redirect('users:profile')
+    else:
+        form = PostForm(request.POST or None, request.FILES or None, instance=post)
+    
+    context = {
+        'post': post,
+        'form': form,
+        'penulis': penulis
+    }
+    return render(request, 'users/edit_artikel.html', context)
+
+
+@login_required
+def delete_artikel(request, id=None):
+    post = get_object_or_404(Post, id=id)
+    users = post.user.username
+    if request.method == 'POST' and request.user.is_authenticated and request.user.username:
+        post.delete()
+        messages.success(request, "Artikel berhasil dihapus!")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
+    context = {
+        'post': post,
+        'users': users
+    }
+    
+    return render(request, 'users/delete_konfirmasi.html', context)

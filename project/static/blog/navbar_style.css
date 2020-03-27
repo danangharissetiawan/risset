@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------------
-
+ 
     Template Name: Adminpro Admin Template
     Template URI: http://SRTtheme.com/
     Description: Adminpro is a responsive admin template based on the famous Bootstrap framework, made it with love in every backend, with tons of beautiful features ready to use.
@@ -243,7 +243,7 @@ padding: 0
    width:330px;
    background:#343434;
    text-align:left;
-   opacity:0;
+   opacity:.5;
    transition: all 0.5s ease 0s;
    visibility:hidden;
    z-index:999;

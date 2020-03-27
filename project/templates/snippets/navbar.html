@@ -18,7 +18,7 @@
                     </nav>
                     <div class="search_container ml-auto">
                         <div class="weather">
-                            <div class="temperature"><a href="{% url 'users:bookmark' %}"><i class="fa fa-bookmark" aria-hidden="true" style="font-size: 25px; color: white;"></i></a></div>
+                            <div class="temperature"><a href="{% url 'users:bookmark' %}"><i class="fa fa-bookmark" aria-hidden="true" style="font-size: 25px;"></i></a></div>
                         </div>
                         <form action="{% url 'blog:search' %}" method="GET", value="{{request.GET.q}}">
                             <input type="text" name="q" value="{{request.GET.q}}" class="header_search_input" required="required" placeholder="Pencarian...">

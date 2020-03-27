@@ -19,16 +19,15 @@
 
 
 {% block contents %}
-<div class="col-lg-9 mb-5">
+<div class="col-md-10 offset-md-1 mb-5">
 	<div class="main_content">
         <div class="mt-5">
-        <h1>Lanjutkan Membaca</h1>
-        <hr>
+        <h1 class="text-center">Lanjutkan Membaca</h1>
         </div>
         <div class="post_body mt-3">
             <nav>
-                <div class="nav nav-tabs custom-menu-wrap " id="nav-tab" role="tablist" >
-                    <ul class="nav nav-tabs custom-menu-wrap ">
+                <div class="nav nav-tabs custom-menu-wrap" id="nav-tab" role="tablist" >
+                    <ul class="nav nav-tabs custom-menu-wrap align-content-center">
                         <li><a class="nav-item nav-link active" id="nav-bookmark-tab" data-toggle="tab" href="#nav-bookmark" aria-controls="nav-bookmark" aria-selected="true">Bookmarks</a>
                         </li>
                         <li><a class="nav-item nav-link" id="nav-suka-tab" data-toggle="tab" href="#nav-suka" aria-controls="nav-suka" aria-selected="false">Suka</a>
@@ -95,7 +94,7 @@
                         {% endfor %}
                         {% else %}
                         <div class="mb-5 mt-5">
-                            <h2>Oops! Anda belum memiliki postingan favorit.</h2>
+                            <h2 class="text-center">Oops! Anda belum memiliki postingan favorit.</h2>
                         </div>
                         {% endif %}
                         <hr>
@@ -152,7 +151,7 @@
                         {% endfor %}
                         {% else %}
                         <div class="mb-5 mt-5">
-                            <h2>Oops! Anda belum memiliki postingan favorit.</h2>
+                            <h2 class="text-center">Oops! Anda belum memiliki postingan favorit.</h2>
                         </div>
                         {% endif %}
                         
@@ -206,7 +205,7 @@
                         {% endfor %}
                     {% else %}
                     <div class="mb-5 mt-5">
-                        <h2>Oops! Anda belum memiliki archives.</h2>
+                        <h2 class="text-center">Oops! Anda belum memiliki archives.</h2>
                     </div>
                     {% endif %}
                     </div>

@@ -309,6 +309,21 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
+.temperature a {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+	color: rgba(255,255,255,0.5);
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.temperature a:hover {
+	color: rgba(255,255,255,1);
+}
+
 .main_nav ul li a:hover,
 .main_nav ul li.active a
 {
@@ -324,6 +339,13 @@ section
 	display: inline-block;
 	margin-right: 26px;
 	vertical-align: middle;
+}
+
+.books {
+	color: rgba(0,0,0,0.5);
+}
+.books:hover {
+	color: red;
 }
 .temperature
 {
