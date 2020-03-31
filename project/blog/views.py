@@ -11,6 +11,7 @@ from django.urls import reverse
 from taggit.models import Tag
 
 from .models import Post, Comment, Like, DisLike, Kategori
+from podcast.models import Podcast
 from .forms import CommentForm
 
 class AllPost(ListView):
@@ -102,8 +103,8 @@ def search(request):
             lookups = Q(judul__icontains=query) | Q(
                 tags__name__icontains=query) | Q(kategori__kategori__icontains=query) | Q(slug__icontains=query) | Q(user__username__icontains=query)
 
-            posts = Post.objects.filter(lookups).distinct()
-            kategori_list = Kategori.objects.all()
+            posts = Post.objects.filter(lookups).distinct() and Podcast.objects.filter(lookups).distinct()
+            kategori_list = Kategori.objects.all() 
 
             context = {
                 'posts': posts,

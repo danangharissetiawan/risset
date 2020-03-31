@@ -11,7 +11,7 @@
 
 {% block header %}
 <div class="home">
-	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/post.jpg' %}" data-speed="0.2"></div>
+	<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{post.thumbnail.url}}" data-speed="0.2"></div>
 	<div class="home_content">
 		<div class="post_category trans_200"><a href="{% url 'blog:kategori' post.kategori %}" class="trans_200">{{post.kategori}}</a></div>
 		<div class="post_title">{{post.judul}}</div>

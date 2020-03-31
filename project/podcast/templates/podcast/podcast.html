@@ -12,6 +12,16 @@
 {% block header %}
 <div class="home">
     <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'blog/images/category.jpg' %}" data-speed="0.8"></div>
+	<div class="home_content">
+	{% for podcast in podcasts|slice:"1" %}
+	<h2><b><a href="{#" style="color: white;">{{podcast.judul}}</a></b></h2>
+	{% endfor %}
+	{% if kategori_active %}
+		<div class="post_category trans_200"><a href="{% url 'podcast:kategori' kategori_active %}" class="trans_200">{{kategori_active}}</a></div>
+	{% else %}
+		<div class="post_category trans_200"><a href="#" class="trans_200">All Post</a></div>
+	{% endif %}
+	</div>
 </div>
 {% endblock header %}
 
@@ -26,23 +36,19 @@
 				<div class="section_title">Kategori</div>
 				<div class="section_tags ml-auto">
 					<ul>
-						<li class="active"><a href="category.html">Semua</a></li>
-						<li><a href="category.html">Lifestyle</a></li>
-						<li><a href="category.html">Berita</a></li>
-						<li><a href="category.html">Kesehatan</a></li>
-						<li><a href="category.html">Teknologi</a></li>
+						<li class=""><a href="{% url 'podcast:home'%}">Semua</a></li>
+						{% for k1 in kategori_list|slice:"4" %}
+						<li><a href="{% url 'podcast:kategori' k1 %}">{{k1}}</a></li>
+						{% endfor %}
 					</ul>
 				</div>
 				<div class="section_panel_more">
 					<ul>
 						<li>more
 							<ul>
-								<li><a href="category.html">new look 2018</a></li>
-								<li><a href="category.html">street fashion</a></li>
-								<li><a href="category.html">business</a></li>
-								<li><a href="category.html">recipes</a></li>
-								<li><a href="category.html">sport</a></li>
-								<li><a href="category.html">celebrities</a></li>
+								{% for k2 in kategori_list|slice:"4:" %}
+								<li><a href="{% url 'podcast:kategori' k2 %}">{{k2}}</a></li>
+								{% endfor %}
 							</ul>
 						</li>
 					</ul>
@@ -51,166 +57,62 @@
 			<div class="section_content">
                 <div class="container">
 					<div class="row poca-portfolio">
+					{% for podcast in podcasts %}
 						<div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
 							<!-- Welcome Music Area -->
 							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
 								<div class="poca-music-content text-center">
-									<span class="music-published-date mb-2">December 9, 2018</span>
+									<span class="music-published-date mb-2">{{podcast.created}}</span>
 									<div class="card-title">
-                                        <a href="#"><h2>Episode 201 - You Don’t Know Squat!</h2></a>
+                                        <a href="{% url 'podcast:detail' podcast.slug %}"><h2>{{podcast.judul}}</h2></a>
                                     </div>
 									<div class="music-meta-data">
-										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
+										<a href="{% url 'podcast:penulis' podcast.user.username %}">{{podcast.user.username}} </a>|<a href="#"> {{podcast.kategori}}</a>
 									</div>
 									<!-- Music Player -->
 									<div class="poca-music-player">
 										<audio preload="auto" controls>
-										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
+										<source src="{{podcast.podcast.url}}">
 										</audio>
 									</div>
 									<!-- Likes, Share & Download -->
 									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
 										<div>
-											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
+											<a href="{% url 'podcast:penulis' podcast.user.username %}" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> {{podcast.user.username}}</a>
+											<span href="#" class="mr-3"><i class="fa fa-eye" aria-hidden="true"></i> {{podcast.views}}</span>
+											<span class="pointer">
+												{% if request.user in podcast.podcast_likes.users.all%}
+												<!-- already liked-->
+												<a href={% url 'podcast:like_dislike' podcast_id=podcast.pk opinion='like' %}> <i
+												data-toggle="tooltip" data-placement="bottom" title="Unlike"
+												class="like fa fa-heart pr-2" style="color: red;">
+												<span>{{podcast.podcast_likes_hint}}</span>
+												</i>
+												</a>
+												{% else %}
+												<!--not liked-->
+												<a href={% url 'podcast:like_dislike' podcast_id=podcast.pk opinion='like' %}><i
+												data-toggle="tooltip" data-placement="bottom" title="Like"
+												class="default-icon fa fa-heart pr-2">
+												<span>{% if podcast.podcast_likes  %}{{podcast.podcast_likes_hint}} {% else %} 0
+												{% endif %}</span></i>
+												</a>
+												{% endif %}
+											</span>
 										</div>
 										<div>
-											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
-											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
-											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
+											<span href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> {{podcast.podcast_comments_hint}}</span>
+											{% if request.user in podcast.bookmark.all %}
+											<a href="{% url 'podcast:bookmarks' podcast.id %}" style="color: red;"><i class="fa fa-bookmark" aria-hidden="true" style="color: red;"></i> {{podcast.bookmark_hint}}</a>
+											{% else %}
+											<a href="{% url 'podcast:bookmarks' podcast.id %}"><i class="fa fa-bookmark" aria-hidden="true"></i> {{podcast.bookmark_hint}}</a>
+											{% endif %}
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-                        <div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
-							<!-- Welcome Music Area -->
-							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-								<div class="poca-music-content text-center">
-									<span class="music-published-date mb-2">December 9, 2018</span>
-									<div class="card-title">
-                                        <a href="#"><h2>Episode 201 - You Don’t Know Squat!</h2></a>
-                                    </div>
-									<div class="music-meta-data">
-										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
-									</div>
-									<!-- Music Player -->
-									<div class="poca-music-player">
-										<audio preload="auto" controls>
-										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
-										</audio>
-									</div>
-									<!-- Likes, Share & Download -->
-									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-										<div>
-											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-										</div>
-										<div>
-											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
-											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
-											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-                        <div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
-							<!-- Welcome Music Area -->
-							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-								<div class="poca-music-content text-center">
-									<span class="music-published-date mb-2">December 9, 2018</span>
-									<div class="card-title">
-                                        <a href="#"><h2>Episode 202 - i do no Know Time!</h2></a>
-                                    </div>
-									<div class="music-meta-data">
-										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
-									</div>
-									<!-- Music Player -->
-									<div class="poca-music-player">
-										<audio preload="auto" controls>
-										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
-										</audio>
-									</div>
-									<!-- Likes, Share & Download -->
-									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-										<div>
-											<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-											<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-										</div>
-										<div>
-											<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
-											<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
-											<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-                        <div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
-							<!-- Welcome Music Area -->
-							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-								<div class="poca-music-content text-center">
-									<span class="music-published-date mb-2">December 9, 2018</span>
-									<div class="card-title">
-                                        <a href="#"><h2>Episode 203 - Keep Smile For Awesome!</h2></a>
-                                    </div>
-									<div class="music-meta-data">
-										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
-									</div>
-									<!-- Music Player -->
-									<div class="poca-music-player">
-										<audio preload="auto" controls>
-										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
-										</audio>
-									</div>
-									<!-- Likes, Share & Download -->
-									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-								<div>
-									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-								</div>
-								<div>
-									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
-									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
-									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-								</div>
-							</div>
-								</div>
-							</div>
-						</div>
-                        <div class="col-12 col-lg-12 single_gallery_item entre wow fadeInUp" data-wow-delay="0.2s">
-							<!-- Welcome Music Area -->
-							<div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-								<div class="poca-music-content text-center">
-									<span class="music-published-date mb-2">December 9, 2018</span>
-									<div class="card-title">
-                                        <a href="#"><h2>Episode 204 - Thanks For Wachting</h2></a>
-                                    </div>
-									<div class="music-meta-data">
-										<a href="#">Da Risset </a>|<a href="#"> Tutorial</a>
-									</div>
-									<!-- Music Player -->
-									<div class="poca-music-player">
-										<audio preload="auto" controls>
-										<source src="{% static 'podcast/audio/dummy-audio.mp3' %}">
-										</audio>
-									</div>
-									<!-- Likes, Share & Download -->
-									<div class="likes-share-download d-flex align-items-center justify-content-between mt-2">
-								<div>
-									<a href="#" class="mr-3"><i class="fa fa-user" aria-hidden="true"></i> Da Risset</a>
-									<a href="#" class=""><i class="fa fa-heart" aria-hidden="true"></i> 29</a>
-								</div>
-								<div>
-									<a href="#" class="mr-3"><i class="fa fa-comments" aria-hidden="true"></i> 16</a>
-									<a href="#" class="mr-3"><i class="fa fa-share-alt" aria-hidden="true"></i> 04</a>
-									<a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i> 12</a>
-								</div>
-							</div>
-								</div>
-							</div>
-						</div>
+					{% endfor %}
                     </div>
                 </div>
             </div>
