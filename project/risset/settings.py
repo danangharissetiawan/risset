@@ -12,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -21,6 +21,8 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
+    # 'grappelli.dashboard',
+    # 'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -165,6 +167,7 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "users:profile"
 LOGOUT_REDIRECT_URL = "login"
@@ -176,3 +179,11 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASS')
 EMAIL_PORT = 587
+
+
+# GRAPPELLI_ADMIN_TITLE = 'Risset'
+# GRAPPELLI_SWITCH_USER = True
+# GRAPPELLI_INDEX_DASHBOARD = 'risset.dashboard.CustomIndexDashboard'
+# GRAPPELLI_INDEX_DASHBOARD = {  # alternative method
+#     'risset.admin.admin_site': 'risset.my_dashboard.CustomIndexDashboard',
+# }

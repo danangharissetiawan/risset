@@ -1,7 +1,7 @@
 /* CHANGELISTS */
 
 #changelist {
-    position: relative;
+    /* position: relative; */
     width: 100%;
 }
 
@@ -9,7 +9,9 @@
     width: 100%;
 }
 
-.change-list .hiddenfields { display:none; }
+.change-list .hiddenfields {
+    display: none;
+}
 
 .change-list .filtered table {
     border-right: none;
@@ -19,8 +21,10 @@
     min-height: 400px;
 }
 
-.change-list .filtered .results, .change-list .filtered .paginator,
-.filtered #toolbar, .filtered div.xfull {
+.change-list .filtered .results,
+.change-list .filtered .paginator,
+.filtered #toolbar,
+.filtered div.xfull {
     margin-right: 280px;
     width: auto;
 }
@@ -30,7 +34,7 @@
 }
 
 #changelist-form .results {
-  overflow-x: auto;
+    /* overflow-x: auto; */
 }
 
 #changelist .toplinks {
@@ -98,7 +102,8 @@
 
 #changelist #toolbar form input[type="submit"] {
     border: 1px solid #ccc;
-    padding: 2px 10px;
+    font-size: 13px;
+    padding: 4px 8px;
     margin: 0;
     vertical-align: middle;
     background: #fff;
@@ -120,14 +125,15 @@
 /* FILTER COLUMN */
 
 #changelist-filter {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1000;
+    /* position: absolute; */
+    margin: 10px;
+    /* top: 0;
+    right: 0; */
+    z-index: -1000;
     width: 240px;
-    background: #f8f8f8;
+    background: white;
     border-left: none;
-    margin: 0;
+    /* margin: 0; */
 }
 
 #changelist-filter h2 {
@@ -180,7 +186,8 @@
     color: #5b80b2;
 }
 
-#changelist-filter a:focus, #changelist-filter a:hover,
+#changelist-filter a:focus,
+#changelist-filter a:hover,
 #changelist-filter li.selected a:focus,
 #changelist-filter li.selected a:hover {
     color: #036;
@@ -223,7 +230,8 @@
     border-top: 1px solid #ddd;
 }
 
-.paginator a:link, .paginator a:visited {
+.paginator a:link,
+.paginator a:visited {
     padding: 2px 6px;
     background: #79aec8;
     text-decoration: none;
@@ -237,7 +245,8 @@
     color: #5b80b2;
 }
 
-.paginator a.showall:focus, .paginator a.showall:hover {
+.paginator a.showall:focus,
+.paginator a.showall:hover {
     background: none;
     color: #036;
 }
@@ -253,7 +262,8 @@
     vertical-align: top;
 }
 
-.paginator a:focus, .paginator a:hover {
+.paginator a:focus,
+.paginator a:hover {
     color: white;
     background: #036;
 }
@@ -339,6 +349,7 @@
     color: #333;
 }
 
-#changelist .actions .button:focus, #changelist .actions .button:hover {
+#changelist .actions .button:focus,
+#changelist .actions .button:hover {
     border-color: #999;
 }

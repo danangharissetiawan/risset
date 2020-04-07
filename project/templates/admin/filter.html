@@ -1,0 +1,18 @@
+{% load i18n %}
+{% comment %} <div class="welcome-wrapper shadow-reset res-mg-t mg-b-30"> {% endcomment %}
+    <div class="welcome-adminpro-title">
+        <h3>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h3>
+    </div>
+    <div class="adminpro-message-list">
+        <ul class="message-list-menu">
+            {% for choice in choices %}
+            <li{% if choice.selected %} class="selected"{% endif %}>
+                <span class="message-info">
+                    <a href="{{ choice.query_string|iriencode }}" title="{{ choice.display }}">{{ choice.display }}</a>
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% comment %} </div> {% endcomment %}
+

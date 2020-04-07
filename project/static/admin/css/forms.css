@@ -1,5 +1,4 @@
 @import url('widgets.css');
-
 /* FORM ROWS */
 
 .form-row {
@@ -83,7 +82,7 @@ form ul.inline li {
     height: 26px;
 }
 
-.aligned label + p, .aligned label + div.help, .aligned label + div.readonly {
+.aligned label+p, .aligned label+div.help, .aligned label+div.readonly {
     padding: 6px 0;
     margin-top: 0;
     margin-bottom: 0;
@@ -115,32 +114,24 @@ form .aligned ul.radiolist {
     padding: 0;
 }
 
-form .aligned p.help,
-form .aligned div.help {
+form .aligned p.help, form .aligned div.help {
     clear: left;
     margin-top: 0;
     margin-left: 160px;
     padding-left: 10px;
 }
 
-form .aligned label + p.help,
-form .aligned label + div.help {
+form .aligned label+p.help, form .aligned label+div.help {
     margin-left: 0;
     padding-left: 0;
 }
 
-form .aligned p.help:last-child,
-form .aligned div.help:last-child {
+form .aligned p.help:last-child, form .aligned div.help:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-form .aligned input + p.help,
-form .aligned textarea + p.help,
-form .aligned select + p.help,
-form .aligned input + div.help,
-form .aligned textarea + div.help,
-form .aligned select + div.help {
+form .aligned input+p.help, form .aligned textarea+p.help, form .aligned select+p.help, form .aligned input+div.help, form .aligned textarea+div.help, form .aligned select+div.help {
     margin-left: 160px;
     padding-left: 10px;
 }
@@ -162,8 +153,7 @@ form .aligned table p {
     padding: 0 0 5px 5px;
 }
 
-.aligned .vCheckboxLabel + p.help,
-.aligned .vCheckboxLabel + div.help {
+.aligned .vCheckboxLabel+p.help, .aligned .vCheckboxLabel+div.help {
     margin-top: -4px;
 }
 
@@ -171,8 +161,7 @@ form .aligned table p {
     width: 610px;
 }
 
-.checkbox-row p.help,
-.checkbox-row div.help {
+.checkbox-row p.help, .checkbox-row div.help {
     margin-left: 0;
     padding-left: 0;
 }
@@ -188,14 +177,11 @@ fieldset .fieldBox {
     width: 200px;
 }
 
-form .wide p,
-form .wide input + p.help,
-form .wide input + div.help {
+form .wide p, form .wide input+p.help, form .wide input+div.help {
     margin-left: 200px;
 }
 
-form .wide p.help,
-form .wide div.help {
+form .wide p.help, form .wide div.help {
     padding-left: 38px;
 }
 
@@ -282,13 +268,14 @@ body.popup .submit-row {
 }
 
 .submit-row a.deletelink {
-    display: block;
+    /* display: block; */
     background: #ba2121;
     border-radius: 4px;
     padding: 10px 15px;
     height: 15px;
     line-height: 15px;
     color: #fff;
+    margin: 3 0 0 0px;
 }
 
 .submit-row a.closelink {
@@ -302,15 +289,11 @@ body.popup .submit-row {
     color: #fff;
 }
 
-.submit-row a.deletelink:focus,
-.submit-row a.deletelink:hover,
-.submit-row a.deletelink:active {
+.submit-row a.deletelink:focus, .submit-row a.deletelink:hover, .submit-row a.deletelink:active {
     background: #a41515;
 }
 
-.submit-row a.closelink:focus,
-.submit-row a.closelink:hover,
-.submit-row a.closelink:active {
+.submit-row a.closelink:focus, .submit-row a.closelink:hover, .submit-row a.closelink:active {
     background: #aaaaaa;
 }
 
@@ -354,7 +337,16 @@ body.popup .submit-row {
 }
 
 .vTextField, .vUUIDField {
-    width: 20em;
+    /* width: 20em; */
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    /* padding: 6px 12px; */
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 70%;
 }
 
 .vIntegerField {
@@ -474,8 +466,7 @@ body.popup .submit-row {
     padding: 0 5px;
 }
 
-.inline-group div.add-row,
-.inline-group .tabular tr.add-row td {
+.inline-group div.add-row, .inline-group .tabular tr.add-row td {
     color: #666;
     background: #f8f8f8;
     padding: 8px 10px;
@@ -487,9 +478,7 @@ body.popup .submit-row {
     border-bottom: 1px solid #eee;
 }
 
-.inline-group ul.tools a.add,
-.inline-group div.add-row a,
-.inline-group .tabular tr.add-row td a {
+.inline-group ul.tools a.add, .inline-group div.add-row a, .inline-group .tabular tr.add-row td a {
     background: url(../img/icon-addlink.svg) 0 1px no-repeat;
     padding-left: 16px;
     font-size: 12px;
@@ -530,3 +519,32 @@ form .related-widget-wrapper ul {
 .clearable-file-input input {
     margin-top: 0;
 }
+
+/* .field-judul {
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s,
+        box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+} */
+
+/* .field-thumbnail {
+    height: 100px;
+    min-height: 150px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background: white;
+    padding: 20px 20px;
+    cursor: pointer;
+    display: none;
+    border-style: solid;
+} */
