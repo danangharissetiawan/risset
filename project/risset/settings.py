@@ -12,23 +12,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
-    # 'grappelli.dashboard',
-    # 'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'crispy_forms',
     'taggit',
     'ckeditor',
@@ -122,7 +119,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS =  [
     os.path.join(BASE_DIR, 'static'),
 ]
-# STATIC_ROOT = os.path.join('static')
+
+# STATICFILES_DIRS = ['home/hasis/Dev/Project/Django/risset/static/']
+STATIC_ROOT = os.path.join('static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

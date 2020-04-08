@@ -24,8 +24,6 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('video/', include('video.urls', namespace='video')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    # path('grappelli/', include('grappelli.urls')), # grappelli URLS
-    # path('myadmin/', include(admin_site.urls)),
     path('admin/', admin.site.urls),
 ]
 

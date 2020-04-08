@@ -24,7 +24,7 @@ class PostAdmin(admin.ModelAdmin):
     change_list_template = 'admin/post/post_change_list.html'
     list_display = ('judul', 'user', 'likes_hit', 'dislikes_hit', 'comments_hit', 'bookmarks_hit', 'created', 'publish',)
     list_display_links = ('judul',)
-    list_filter = ('user', 'created',)
+    list_filter = ('created',)
     search_fields = ('judul', 'kategori', 'tags')
     readonly_fields = ['slug', 'bookmarks', 'created', 'modified', 'publish', 'views',]
     fieldsets = (

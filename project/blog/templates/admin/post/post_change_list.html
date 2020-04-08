@@ -1,6 +1,5 @@
 {% extends "admin/change_list.html" %}
-{% load static %}
-
+{% load i18n admin_urls static admin_list %}
 <!-- Override extrahead to add Chart.js -->
 {% block extrahead %}
 {{ block.super }}
@@ -77,8 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 {% block content %}
 <!-- Render our chart -->
-<div style="width: 80%;">
+<div class="row" style="width: 100%;">
+  <div class="col-lg-7">
   <canvas style="margin-bottom: 30px; width: 60%; height: 50%;" id="myChart"></canvas>
+  </div>
+  {% block filters %}
+    <div class="col-lg-4">
+      <div class="welcome-wrapper shadow-reset res-mg-t mg-b-30">
+        {% if cl.has_filters %}
+          <div id="changelist-filter">
+            <h2>{% trans 'Filter' %}</h2>
+            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endblock %}
 </div>
 {{ block.super }}
 {% endblock %}
